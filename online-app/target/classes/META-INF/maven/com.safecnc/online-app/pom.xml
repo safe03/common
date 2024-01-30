@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<!-- lookup parent from repository -->
+	<parent>
+		<groupId>com.safecnc</groupId>
+		<artifactId>COMMON</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<!-- local repository for ubiserver -->
+	<!--  -->
+	<repositories>
+		<repository>
+			<id>local-repository</id>
+			<name>local repository</name>
+			<url>file://${project.basedir}/repository</url>
+		</repository>
+
+		<repository>
+		    <id>in-project-jenkins</id>
+		    <name>custom jars-jenkins</name>
+		    <url>file://${JENKINS_HOME}/jobs/${JOB_NAME}/workspace/lib</url>
+		</repository>
+	</repositories>
+	
+	<!-- local repository for ubiserver use jenkins -->
+	<!-- project information -->
+	<packaging>jar</packaging>
+	<artifactId>online-app</artifactId>
+	<name>safecnc online application</name>
+	<description>Safecnc Application Project</description>
+	<url>http://maven.apache.org</url>
+	 
+	<!-- application developer(s) -->
+	<developers>
+		<developer>
+			<id>justin-henry@1067444865</id>
+			<name>SafeCnc ERP Project Contributors</name>
+			<email>kim0lil@safecnc.co.kr</email>
+			<url>http://www.safecnc.co.kr</url>
+			<organization>SafeCnc Project</organization>
+		</developer>
+		<developer>
+			<id>Chris@1040132276</id>
+			<name>Chris Lee</name>
+			<email>necropolis00@safecnc.co.kr</email>
+			<url>http://www.safecnc.co.kr</url>
+			<organization>safecnc</organization>
+		</developer>
+	</developers>
+	
+	<!-- properties, use this project -->
+	<properties>
+		
+		<!-- skip repackaging -->
+    	<spring-boot.repackage.skip>true</spring-boot.repackage.skip>
+    	
+    	<!-- skip maven test phase -->
+    	<maven.test.skip>true</maven.test.skip>
+	</properties>
+	
+	<!-- 
+		server environment profile(s)
+		       supported type [ local, test, stage, prod ] 
+		       workflow flowing [ local -> test -> stage -> prod -> patch ]
+	-->
+	<profiles>
+		
+		<!-- 
+			environment default setting *local 
+			step. local(*) => test [ nothing version control ]
+		-->
+		<profile>
+			<id>local</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<spring.profiles.active>local</spring.profiles.active>
+			</properties>
+		</profile>
+		
+		<!-- 
+			environment test server setting *test 
+			step. test(*) => stage [ subversion update 0.0.x none release version ]
+		-->
+		<profile>
+			<id>test</id>
+			<properties>
+				<spring.profiles.active>test</spring.profiles.active>
+			</properties>
+		</profile>
+		
+		<!-- 
+			environment staging server setting *stage 
+			step. stage(*) => product [ main version feed control ]
+		-->
+		<profile>
+			<id>stage</id>
+			<properties>
+				<spring.profiles.active>stage</spring.profiles.active>
+			</properties>
+		</profile>
+		
+		<!-- 
+			environment product server setting *prod
+			step. product(*) => fetch(*) [ manage engineer ]
+		-->
+		<profile>
+			<id>prod</id>
+			<properties>
+				<spring.profiles.active>prod</spring.profiles.active>
+			</properties>
+		</profile>
+		
+	</profiles>
+
+	<!-- Dependencies ... -->
+
+	<!-- Dependencies ... -->
+	
+	<dependencies>
+	    <!-- 
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+         -->
+		<!-- ===================================================================0= -->
+		<!-- ====================== spring module(s) start =====================0= -->
+		<!-- ===================================================================0= -->
+
+		<!-- ===================================================================0= -->
+		<!-- ======================= spring module(s) end ======================0= -->
+		<!-- ===================================================================0= -->
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<!-- ===================================================================1= -->
+		<!-- ===================== 3rt party library(s) start ==================1= -->
+		<!-- ===================================================================1= -->
+		
+		<!-- 1. with Sun and Oracle Cooperation -->
+		<!-- jsp basic library taging, servlet(jsp, jstl), ant-matcher -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		
+		<!-- java servlet(jsp) taglibrary -->
+		<dependency>
+		    <groupId>javax.servlet</groupId>
+		    <artifactId>jstl</artifactId>
+		</dependency>
+		
+		<!--  -->
+		<dependency>
+			<groupId>taglibs</groupId>
+			<artifactId>standard</artifactId>
+			<version>${standard.version}</version>
+		</dependency>
+		
+	   	<!-- Need this to compile JSP -->
+	    <dependency>
+	        <groupId>org.apache.tomcat.embed</groupId>
+	        <artifactId>tomcat-embed-jasper</artifactId>
+	        <scope>provided</scope>
+	    </dependency>
+		
+	    <dependency>
+			<groupId>com.ubisoft</groupId>
+			<artifactId>ubiServer</artifactId>
+			<version>0.1</version>
+		</dependency>
+		
+		<!-- ===================================================================1= -->
+		<!-- ====================== 3rt party library(s) end ===================1= -->
+		<!-- ===================================================================1= -->
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<!-- ===================================================================2= -->
+		<!-- ====================== user library(s) start ======================2= -->
+		<!-- ===================================================================2= -->
+		
+		<!-- ===================================================================2= -->
+		<!-- ======================= user library(s) end =======================2= -->
+		<!-- ===================================================================2= -->
+		 
+	</dependencies>
+
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.7.0</version>
+					<configuration>
+						<source>1.8</source>
+						<target>1.8</target>
+						<encoding>UTF-8</encoding>
+						<maxmem>1024m</maxmem>
+					</configuration>
+				</plugin>
+				
+				<!-- LOMBOK -->
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+					<configuration>
+						<excludes>
+							<exclude>
+								<groupId>org.projectlombok</groupId>
+								<artifactId>lombok</artifactId>
+							</exclude>
+						</excludes>
+						<includeSystemScope>true</includeSystemScope>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<configuration>
+					<archive>            
+						<manifest>                
+							<addClasspath>true</addClasspath>                
+							<classpathPrefix>WEB-INF/lib/</classpathPrefix>                
+							<mainClass>test.Main</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+			<!-- JDOC -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Build-Jdk-Spec: 17
+Implementation-Title: safecnc online application
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor: safecnc
+Created-By: Maven Integration for Eclipse
+

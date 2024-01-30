@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+    
+    <property name="LOG_POST_FIX" value="log"/>
+    
+    <!-- local roolling test -->
+    
+    <!-- 
+    	[test]와 [stage]의 경우 파일 롤링은 각 파일 [msalesdev] 맞추어 저장한다.
+    	local일 경우 파일 롤링은 처리하지 않는다. 
+    -->
+	<springProfile name="test,stage"> <property name="LOG_DIR" value="C:/app/logs/SFD2022_TEST"/> </springProfile>
+
+    <!-- SFD2022_test.log로 저장한다. -->
+    <springProfile name="test"> <property name="LOG_FILE_NAME" value="SFD2022_TEST"/> </springProfile>
+    
+    <!-- 
+    	[prod]의 경우[msalesprod]에 맞추어 저장한다.
+    -->
+	<springProfile name="prod"> <property name="LOG_DIR" value="C:/temp/logs/SFD2022/"/> </springProfile>
+	
+    
+    <!-- SFD2022.log로 저장한다. -->
+	<springProfile name="stage,prod"> <property name="LOG_FILE_NAME" value="SFD2022"/> </springProfile>
+    
+    <property name="LOG_PATH_NAME" value="${LOG_DIR}/${LOG_FILE_NAME}.${LOG_POST_FIX}" />
+    
+	<!-- console log -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>
+                %d{yyyy-MM-dd HH:mm:ss} %-5level [%t] %C{1.}: %msg%n%throwable
+            </Pattern>
+        </layout>
+    </appender>
+	
+	<springProfile name="local,test,stage,prod"> 
+		
+	    <!-- FILE Appender -->
+	    <appender name="ROLLING_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	    	<!-- 파일 저장 경로 -->
+	        <file>${LOG_PATH_NAME}</file>
+	        <encoder>
+	        	<!-- 로그 파일 패턴 -->
+	            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level [%t] %C{1.}: %msg%n%throwable</pattern>
+	        </encoder>
+	        
+	        <!-- 일자별로 로그파일 적용하기 -->
+	        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+	        	<!-- 로그 파일 명칭 -->
+	            <fileNamePattern>${LOG_PATH_NAME}_%d{yyyyMMdd}</fileNamePattern>
+	            <!-- 일자별 백업파일의 보관기간 -->
+	            <maxHistory>60</maxHistory> 
+	        </rollingPolicy>
+	    </appender>
+	    
+	</springProfile>
+	 
+ 	<logger name="org.springframework.security" level="INFO" additivity="true">
+    	<appender-ref ref="STDOUT" />
+	</logger>
+	
+ 	<logger name="org.apache" level="ERROR" additivity="false">
+    	<appender-ref ref="STDOUT" />
+	</logger>
+	
+    <!-- safe building logger level is << INFO >> -->
+ 	<logger name="sfw" level="DEBUG" additivity="true">
+    	<appender-ref ref="STDOUT" />
+	</logger>
+    
+	<!-- sql execute jdbc logger -->
+    <logger name="jdbc" level="WARN" additivity="false">
+    	<appender-ref ref="STDOUT" />
+    </logger>
+    
+	<logger name="jdbc.resultset" level="WARN" additivity="false">
+    	<appender-ref ref="STDOUT" />
+	</logger>
+    
+	<logger name="jdbc.sqlonly" level="INFO" additivity="false">
+    	<appender-ref ref="STDOUT" />
+	</logger>
+	 
+	<logger name="jdbc.sqltiming" level="WARN" additivity="false">
+    	<appender-ref ref="STDOUT" />
+	</logger>
+	 
+	<logger name="jdbc.resultsettable" level="WARN" additivity="false">
+    	<appender-ref ref="STDOUT" />
+	</logger>
+	 
+	<logger name="jdbc.audit" level="WARN" additivity="false">
+    	<appender-ref ref="STDOUT" />
+	</logger>
+	
+	<logger name="jdbc.connection" level="WARN" additivity="false">
+    	<appender-ref ref="STDOUT" />
+	</logger>
+	 
+	<logger name="net" level="WARN" additivity="false">
+    	<appender-ref ref="STDOUT" />
+	</logger>
+    
+    <!-- TRACE > DEBUG > INFO > WARN > ERROR, 대소문자 구분 안함 -->
+    
+    <root level="DEBUG">
+    	
+    	<!-- local일 경우 파일 롤링은 처리하지 않는다. -->
+    	<springProfile name="!local"> <appender-ref ref="ROLLING_FILE" /> </springProfile>
+        
+        <appender-ref ref="STDOUT" />
+    </root>
+
+</configuration>

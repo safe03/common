@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AAAA0020">
+
+    <!-- **************************************
+    NAME  : 공통코드 조회
+    PARAM :
+    MEMO  :
+    *************************************** -->
+    <select id="SEL00" parameterType="map" resultType="map">
+    <trim prefix="{ call" suffix="}">
+        SP_AAAA0020_SEL00(
+             #{ WORK_USID }
+            ,#{ WORK_IP   }
+            ,#{ WORK_COMP }
+            ,#{ COMM_CDNM }
+            ,#{ MODU_CD   }
+        )
+    </trim>
+    </select>
+
+    <!-- **************************************
+    NAME  : 세부코드 조회
+    PARAM :
+    MEMO  :
+    *************************************** -->
+    <select id="SEL10" parameterType="map" resultType="map">
+    <trim prefix="{ call" suffix="}">
+        SP_AAAA0020_SEL10(
+             #{ WORK_USID } 
+            ,#{ WORK_IP   } 
+            ,#{ WORK_COMP } 
+            ,#{ COMM_CD   } 
+        )
+    </trim>
+    </select>
+
+   
+    <!-- **************************************
+    NAME  : 세부코드 갱신
+    PARAM :
+    MEMO  :
+    *************************************** -->
+    <update id="UPD00" parameterType="map" >
+    <trim prefix="{ call" suffix="}">
+        SP_AAAA0020_UPD00(
+				 #{ WORK_USID  }
+				,#{ WORK_IP    }
+				,#{ WORK_COMP  }
+				,#{ COMM_CD    }
+				,#{ COMD_CD    }
+				,#{ COMD_NM    }
+				,#{ USE_YSNO   }
+				,#{ USE_FRDT   }
+				,#{ USE_EDDT   }
+				,#{ REF0_FILD  }
+				,#{ REF1_FILD  }
+				,#{ REF2_FILD  }
+				,#{ REF3_FILD  }
+				,#{ REF4_FILD  }
+				,#{ REF5_FILD  }
+				,#{ REF6_FILD  }
+				,#{ REF7_FILD  }
+				,#{ REF8_FILD  }
+				,#{ REF9_FILD  }
+				,#{ ASIS_CD    }
+				,#{ SORT_ORDR  }
+				,#{ REMARK     }
+        )
+    </trim>
+    </update>
+    
+    <!-- 
+    **************************************
+    NAME  : 세부코드 신규
+    PARAM : 
+    MEMO  : 
+    *************************************** 
+    -->
+    <insert id="INS00" parameterType="map">
+    
+        <trim prefix="{ call" suffix="}">
+    
+            SP_AAAA0020_INS00 (  
+				 #{ WORK_USID  }
+				,#{ WORK_IP    }
+				,#{ WORK_COMP  }
+				,#{ COMM_CD    }
+				,#{ COMD_CD    }
+				,#{ COMD_NM    }
+				,#{ USE_YSNO   }
+				,#{ USE_FRDT   }
+				,#{ USE_EDDT   }
+				,#{ REF0_FILD  }
+				,#{ REF1_FILD  }
+				,#{ REF2_FILD  }
+				,#{ REF3_FILD  }
+				,#{ REF4_FILD  }
+				,#{ REF5_FILD  }
+				,#{ REF6_FILD  }
+				,#{ REF7_FILD  }
+				,#{ REF8_FILD  }
+				,#{ REF9_FILD  }
+				,#{ ASIS_CD    }
+				,#{ SORT_ORDR  }
+				,#{ REMARK     }
+            )
+            
+        </trim>
+        
+    </insert>
+    
+    <!-- 
+    **************************************
+    NAME  : 세부코드 삭제
+    PARAM : 
+    MEMO  : 
+    *************************************** 
+    -->
+    <delete id="DEL00" parameterType="map">
+    
+        <trim prefix="{ call" suffix="}">
+        
+            SP_AAAA0020_DEL00 ( 
+				  #{ WORK_USID }
+				, #{ WORK_IP   }
+				, #{ COMM_CD   }
+				, #{ COMD_CD   }
+            )
+                        
+        </trim>
+        
+    </delete>
+
+</mapper>

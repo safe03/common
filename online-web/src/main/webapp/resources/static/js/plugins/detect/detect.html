@@ -1,0 +1,50 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+<!DOCTYPE html>
+<html class="full" lang="ko">
+<head>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta charset="utf-8" >
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="detect test" />
+<meta name="author" content="seung" />
+<title>detect test</title>
+
+<script src="detect.min.js"></script>
+
+</head>
+<body>
+
+<script type="text/javascript">
+
+var ua = detect.parse(navigator.userAgent);
+
+document.write('<br />' + 	ua.browser.family); // "Mobile Safari"
+document.write('<br />' + 	ua.browser.name); // "Mobile Safari 4.0.5"
+document.write('<br />' + 	ua.browser.version); // "4.0.5"
+document.write('<br />' + 	ua.browser.major); // 4
+document.write('<br />' + 	ua.browser.minor); // 0
+document.write('<br />' + 	ua.browser.patch); // 5
+
+document.write('<br />' + 	ua.device.family); // "iPhone"
+document.write('<br />' + 	ua.device.name); // "iPhone"
+document.write('<br />' + 	ua.device.version); // ""
+document.write('<br />' + 	ua.device.major); // null
+document.write('<br />' + 	ua.device.minor); // null
+document.write('<br />' + 	ua.device.patch); // null
+document.write('<br />' + 	ua.device.type); // "Mobile"
+document.write('<br />' + 	ua.device.manufacturer); // "Apple"
+
+document.write('<br />' + 	ua.os.family); // "iOS"
+document.write('<br />' + 	ua.os.name); // "iOS 4"
+document.write('<br />' + 	ua.os.version); // "4"
+document.write('<br />' + 	ua.os.major); // 4
+document.write('<br />' + 	ua.os.minor); // 0
+document.write('<br />' + 	ua.os.patch); // null
+
+
+</script>
+
+</body>
+</html>

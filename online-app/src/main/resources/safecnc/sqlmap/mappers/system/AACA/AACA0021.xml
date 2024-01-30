@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AACA0021">
+	
+    <!-- 
+    **************************************
+    NAME  : 사용자 삭제
+    PARAM : 
+    MEMO  : 
+    *************************************** 
+    -->
+    <delete id="DEL00" parameterType="map">
+    
+        <trim prefix="{ call" suffix="}">
+        
+            SP_AACA0021_DEL00 ( 
+				  #{ WORK_USID }
+				, #{ WORK_IP   }
+				, #{ USER_ID   }
+            )
+                        
+        </trim>
+        
+    </delete>
+	
+    <!-- 
+    **************************************
+    NAME  : 사용자 신규
+    PARAM : 
+    MEMO  : 
+    *************************************** 
+    -->
+    <insert id="INS00" parameterType="map">
+    
+        <trim prefix="{ call" suffix="}">
+    
+            SP_AACA0021_INS00 (  
+				 #{ WORK_USID  	   }
+				,#{ WORK_IP    	   }
+				,#{ USER_ID		   }
+				,#{ PASS_WORD	   }
+				,#{ USR_GU		   }
+				,#{ COMP_ID		   }
+				,#{ DEPT_CD		   }
+				,#{ PASS_DT		   }
+				,#{ IP_ADDR		   }
+				,#{ MAC_ADDR	   }
+				,#{ USE_YSNO	   }
+				,#{ LANG_CODE	   }
+				,#{ TEL			   }
+				,#{ NICKNAME	   }
+				,#{ EMAIL1		   }
+				,#{ EMAIL2		   }
+				,#{ LOGO		   }
+				,#{ FILE		   }
+				,#{ LOCATION	   }
+				,#{ REMARK		   }
+				,#{ LOCK_YSNO	   }
+				,#{ LAST_LOCK_DATE }
+				,#{ CERTI_FAIL_CNT }
+				,#{ AUTH_BKIMG	   }
+				,#{ EMPL_NUMB	   }
+            )
+            
+        </trim>
+        
+    </insert>
+	
+    <!-- **************************************
+    NAME  : 사용자 갱신
+    PARAM :
+    MEMO  :
+    *************************************** -->
+    <update id="UPD00" parameterType="map" >
+    
+	    <trim prefix="{ call" suffix="}">
+	    	
+	        SP_AACA0021_UPD00(
+				 #{ WORK_USID 	   }
+				,#{ WORK_IP    	   }
+				,#{ USER_ID		   }
+				,#{ PASS_WORD	   }
+				,#{ USR_GU		   }
+				,#{ USER_NM		   }
+				,#{ USER_TYPE	   }
+				,#{ COMP_ID		   }
+				,#{ DEPT_CD		   }
+				,#{ PASS_DT		   }
+				,#{ IP_ADDR		   }
+				,#{ MAC_ADDR	   }
+				,#{ USE_YSNO	   }
+				,#{ LANG_CODE	   }
+				,#{ TEL			   }
+				,#{ NICKNAME	   }
+				,#{ EMAIL1		   }
+				,#{ EMAIL2		   }
+				,#{ LOGO		   }
+				,#{ FILE		   }
+				,#{ LOCATION	   }
+				,#{ REMARK		   }
+				,#{ LOCK_YSNO	   }
+				,#{ LAST_LOCK_DATE }
+				,#{ CERTI_FAIL_CNT }
+				,#{ AUTH_BKIMG	   }
+				,#{ EMPL_NUMB	   }
+	        )
+	        
+	    </trim>
+	    
+    </update>
+    
+    
+	
+</mapper>

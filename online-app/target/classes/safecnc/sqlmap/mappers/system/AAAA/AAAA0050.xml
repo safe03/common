@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AAAA0050">
+
+    <!-- **************************************
+    NAME  : 공통팝업 조회
+    PARAM :
+    MEMO  :
+    *************************************** -->
+    <select id="SEL00" parameterType="map" resultType="map">
+    
+	    <trim prefix="{ call" suffix="}">
+	    	
+	        SP_AAAA0050_SEL00(
+	             #{ WORK_USID }   /* 로그인 사용자ID */
+	            ,#{ WORK_IP   }   /* 로그인 사용자IP */
+	            ,#{ POP_CDNM  }   /* 팝업 아이디 */
+	        )
+	        
+	    </trim>
+	    
+    </select>
+	
+    <!-- **************************************
+    NAME  : 공통팝업 갱신
+    PARAM :
+    MEMO  :
+    *************************************** -->
+    <update id="UPD00" parameterType="map" >
+    
+	    <trim prefix="{ call" suffix="}">
+	    	
+	        SP_AAAA0050_UPD00(
+					 #{ WORK_USID   }
+					,#{ WORK_IP     }
+					,#{ POP_CD      }
+					,#{ POP_NM      }
+					,#{ POP_SP      }
+					,#{ POP_DESC    }
+					,#{ AUTO_YSNO   }
+					,#{ SEARCH_JSON }
+					,#{ RESULT_JSON }
+					,#{ REMARK      }
+	        )
+	        
+	    </trim>
+	    
+    </update>
+    
+    <!-- 
+    **************************************
+    NAME  : 공통팝업 신규
+    PARAM : 
+    MEMO  : 
+    *************************************** 
+    -->
+    <insert id="INS00" parameterType="map">
+    
+        <trim prefix="{ call" suffix="}">
+    
+            SP_AAAA0050_INS00 (  
+				 #{ WORK_USID    }
+				,#{ WORK_IP      }
+				,#{ POP_CD       }
+				,#{ POP_NM       }
+				,#{ POP_SP       }
+				,#{ POP_DESC     }
+				,#{ AUTO_YSNO    }
+				,#{ SEARCH_JSON  }
+				,#{ RESULT_JSON  }
+				,#{ REMARK       }
+            )
+            
+        </trim>
+        
+    </insert>
+    
+    <!-- 
+    **************************************
+    NAME  : 공통팝업 삭제
+    PARAM : 
+    MEMO  : 
+    *************************************** 
+    -->
+    <delete id="DEL00" parameterType="map">
+    
+        <trim prefix="{ call" suffix="}">
+        
+            SP_AAAA0050_DEL00 ( 
+				  #{ WORK_USID }
+				, #{ WORK_IP   }
+				, #{ POP_CD    }
+            )
+                        
+        </trim>
+        
+    </delete>
+	
+</mapper>

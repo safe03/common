@@ -1,0 +1,1 @@
+if(!nexacro.datasetUtility){nexacro.datasetUtility=function(_a,_b){nexacro.NormalDataset.call(this,_a,_b);};nexacro.datasetUtility.prototype=nexacro._createPrototype(nexacro.NormalDataset,nexacro.datasetUtility);nexacro.datasetUtility.prototype._type_name="datasetUtility";nexacro.datasetUtility.prototype.destroy=function(){nexacro.NormalDataset.prototype.destroy.call(this);};}

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AAAA0030">
+
+	 <!-- **************************************
+    NAME  : 다국어 리스트 조회
+    PARAM :
+    MEMO  :
+    *************************************** -->
+    <select id="LANG_M_COMBO" parameterType="map" resultType="map">
+	    SELECT
+			LANG_CODE ,
+			LANG_NAME,
+			MAIN_YSNO,
+			REPL_LANG ,
+			SORT_ORDR
+		FROM
+			TM_LANGXM
+		WHERE USEX_YSNO = 1	
+    </select>
+
+
+    <!-- **************************************
+    NAME  : 메시지 조회
+    PARAM :
+    MEMO  :
+    *************************************** -->
+    <select id="SEL00" parameterType="map" resultType="map">
+    
+	    <trim prefix="{ call" suffix="}">
+	    
+	        SP_AAAA0030_SEL00(
+	             #{ WORK_USID }
+	            ,#{ WORK_IP   }
+	            ,#{ WORK_COMP }
+				,#{ sLANG_CODE }
+	            ,#{ MSG_CDNM  }
+	            ,#{ MODU_CD  }
+	        )
+	        
+	    </trim>
+	    
+    </select>
+
+   
+    <!-- **************************************
+    NAME  : 메시지 갱신
+    PARAM :
+    MEMO  :
+    *************************************** -->
+    <update id="UPD00" parameterType="map" >
+    
+	    <trim prefix="{ call" suffix="}">
+	    
+	        SP_AAAA0030_UPD00(
+					 #{ WORK_USID  }
+					,#{ WORK_IP    }
+					,#{ LANG_CODE  }
+					,#{ MSG_CD     }
+					,#{ MSG_TEXT   }
+					,#{ MODU_CD    }
+					,#{ MSG_TYPE   }
+					,#{ CALL_TYPE  }
+	        )
+	        
+	    </trim>
+	    
+    </update>
+    
+    <!-- 
+    **************************************
+    NAME  : 메시지 신규
+    PARAM : 
+    MEMO  : 
+    *************************************** 
+    -->
+    <insert id="INS00" parameterType="map">
+    
+        <trim prefix="{ call" suffix="}">
+    
+            SP_AAAA0030_INS00 (  
+				 #{ WORK_USID  }
+				,#{ WORK_IP    }
+				,#{ LANG_CODE  }
+				,#{ MSG_CD     }
+				,#{ MSG_TEXT   }
+				,#{ MODU_CD    }
+				,#{ MSG_TYPE   }
+				,#{ CALL_TYPE  }
+            )
+            
+        </trim>
+        
+    </insert>
+    
+    <!-- 
+    **************************************
+    NAME  : 메시지 삭제
+    PARAM : 
+    MEMO  : 
+    *************************************** 
+    -->
+    <delete id="DEL00" parameterType="map">
+    
+        <trim prefix="{ call" suffix="}">
+        
+            SP_AAAA0030_DEL00 ( 
+				  #{ WORK_USID }
+				, #{ WORK_IP   }
+				, #{ MSG_CD    }
+            )
+                        
+        </trim>
+        
+    </delete>
+
+</mapper>

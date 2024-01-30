@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AAAA0040">
+
+    <!-- **************************************
+    NAME  : 콤보 조회
+    PARAM :
+    MEMO  :
+    *************************************** -->
+    <select id="SEL00" parameterType="map" resultType="map">
+    
+	    <trim prefix="{ call" suffix="}">
+	    	
+	        SP_AAAA0040_SEL00(
+	             #{ WORK_USID  }
+	            ,#{ WORK_IP    }
+	            ,#{ WORK_COMP  }
+	            ,#{ COMBO_CDNM }
+	        )
+	        
+	    </trim>
+	    
+    </select>
+	
+    <!-- **************************************
+    NAME  : 콤보 조회
+    PARAM :
+    MEMO  :
+    *************************************** -->
+    <select id="SEL10" parameterType="map" resultType="map">
+    
+	    <trim prefix="{ call" suffix="}">
+	    	
+	        SP_AAAA0040_SEL10(
+	             #{ WORK_USID  }
+	            ,#{ WORK_IP    }
+	            ,#{ WORK_COMP  }
+	            ,#{ COMBO_SPNM }
+	        )
+	        
+	    </trim>
+	    
+    </select>
+	
+    <!-- **************************************
+    NAME  : 콤보 갱신
+    PARAM :
+    MEMO  :
+    *************************************** -->
+    <update id="UPD00" parameterType="map" >
+    
+	    <trim prefix="{ call" suffix="}">
+	    	
+	        SP_AAAA0040_UPD00(
+					 #{ WORK_USID  }
+					,#{ WORK_IP    }
+					,#{ WORK_COMP  }
+					,#{ COMBO_CD   }
+					,#{ COMBO_NM   }
+					,#{ COMBO_SP   }
+					,#{ REMARK     }
+	        )
+	        
+	    </trim>
+	    
+    </update>
+    
+    <!-- 
+    **************************************
+    NAME  : 콤보 신규
+    PARAM : 
+    MEMO  : 
+    *************************************** 
+    -->
+    <insert id="INS00" parameterType="map">
+    
+        <trim prefix="{ call" suffix="}">
+    
+            SP_AAAA0040_INS00 (  
+				 #{ WORK_USID  }
+				,#{ WORK_IP    }
+				,#{ WORK_COMP  }
+				,#{ COMBO_CD   }
+				,#{ COMBO_NM   }
+				,#{ COMBO_SP   }
+				,#{ REMARK     }
+            )
+            
+        </trim>
+        
+    </insert>
+    
+    <!-- 
+    **************************************
+    NAME  : 콤보 삭제
+    PARAM : 
+    MEMO  : 
+    *************************************** 
+    -->
+    <delete id="DEL00" parameterType="map">
+    
+        <trim prefix="{ call" suffix="}">
+        
+            SP_AAAA0040_DEL00 ( 
+				  #{ WORK_USID }
+				, #{ WORK_IP   }
+				, #{ COMBO_CD  }
+            )
+                        
+        </trim>
+        
+    </delete>
+	
+</mapper>

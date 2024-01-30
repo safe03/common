@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="COMLOGIN">
+
+    <!-- **************************************
+    NAME  : 사용자 로그인 CHECK
+    PARAM : 
+    MEMO  : 
+    *************************************** -->
+    <select id="LOGINCHECK" parameterType="map" resultType="map">
+    
+	    <trim prefix="{ call" suffix="}">
+	    
+	        SP_COM_LOGIN(
+	        	#{USER_ID}
+	          , #{PASS_WORD}
+	        )
+	        
+	    </trim>
+	    
+    </select>
+    
+    <!-- **************************************
+    NAME  : 강제세션종료
+    PARAM : 
+    MEMO  : 
+    *************************************** -->
+    <insert id="LOGINTERMINATE" parameterType="map">
+    
+	    <trim prefix="{ call" suffix="}">
+	    
+	        SP_COM_LOGIN_TERMINATE (
+	              #{ WORK_USID }
+	            , #{ WORK_IP   }
+	            , #{ WORK_COMP }
+	            , #{ iUSER_ID  }
+	            , #{ iSESS_ID  }
+	            , #{ iLOG_DATE }
+	        )
+	        
+	    </trim>
+	    
+    </insert>
+
+    <!-- **************************************
+    NAME  : 로그인가능 회사 조회
+    PARAM :
+    MEMO  :
+    *************************************** -->
+    <select id="GETLOGINCOMP" parameterType="map" resultType="map">
+    
+	    <trim prefix="{ call" suffix="}">
+	    
+	        SP_COM_USE_COMP(
+	        	#{ USER_ID }
+	        )
+	        
+	    </trim>
+	    
+    </select>
+    
+    <!-- **************************************
+    NAME  : 회사 정보 조회
+    PARAM :
+    MEMO  :
+    *************************************** -->
+    <select id="GETCOMPINFO" parameterType="map" resultType="map">
+    
+	    <trim prefix="{ call" suffix="}">
+	    
+	        SP_COM_COMPINFO(
+	        	#{ COMP_ID }
+	        )
+	        
+	    </trim>
+	    
+    </select>
+
+    <!-- **************************************
+    NAME  : 비밀번호 변경
+    PARAM : 
+    MEMO  : 
+    *************************************** -->
+    <update id="PASSWORDCHANGE" parameterType="map">
+    
+	    <trim prefix="{ call" suffix="}">
+	    
+	        SP_COM_PW_CHANGE (
+	              #{ WORK_USID }
+	            , #{ WORK_IP   }
+	            , #{ WORK_COMP }
+	            , #{ USER_ID   }
+	            , #{ PASS_WORD }
+	        )
+	        
+	    </trim>
+	    
+    </update>
+
+    <!-- **************************************
+    NAME  : 메뉴목록 조회
+    PARAM : 
+    MEMO  : 
+    *************************************** -->
+    <select id="MENUDOWN" parameterType="map" resultType="map">
+    
+	    <trim prefix="{ call" suffix="}">
+	 
+	        SP_COM_MENU (
+	        	#{ USER_ID   }
+	          , #{ COMP_ID   }
+	          , #{ AUTH_GR	 }
+	          , #{ LANG_CODE }
+			)
+	        
+	    </trim>
+	            
+	             
+    </select>
+
+    <!-- **************************************
+    NAME  : 마이 메뉴목록 조회
+    PARAM : 
+    MEMO  : 
+    *************************************** -->
+    <select id="MYMENUDOWN" parameterType="map" resultType="map">
+    
+	    <trim prefix="{ call" suffix="}">
+	    
+	        SP_COM_MYMENU (
+				  #{ USER_ID   }
+				, #{ COMP_ID   }
+				, #{ MODULE    }
+				, #{ LANG_CODE }
+			)
+	    </trim>
+	    
+    </select>
+
+    <!-- **************************************
+    NAME  : 메시지 정보 조회
+    MEMO  : 
+    *************************************** -->
+    <select id="MESSAGEDOWN" parameterType="map" resultType="map">
+    	
+	    <trim prefix="{ call" suffix="}">
+	    	
+	        SP_COM_MSG(
+	        	#{ USER_ID   }
+	          , #{ COMP_ID   }
+	          , #{ LANG_CODE }
+			)
+	        
+	    </trim>
+	    
+    </select>
+
+    <!-- **************************************
+    NAME  : 메시지 조회
+    MEMO  :
+    *************************************** -->
+    <select id="FIND_MESSAGE" parameterType="map" resultType="map">
+
+		select
+			   MSG_CD
+			  ,MSG_TEXT as MSGE_CNTT
+			  ,LANG_CODE
+			  ,MSG_TYPE
+			  ,CALL_TYPE
+		from ta_message
+		where MSG_CD in
+		<foreach collection="MSG_CD" item="messageCode" index="index" separator="," open="(" close=")">
+			#{messageCode}
+		</foreach>
+
+    </select>
+
+
+
+
+
+    <!-- **************************************
+    NAME  : MyMenu 추가
+    PARAM : 
+    MEMO  : 
+    *************************************** -->
+    <insert id="INSERTMYMENU" parameterType="map">
+    	
+	    <trim prefix="{ call" suffix="}">
+	    	
+	        SP_COM_MYMENU_ADD (
+	              #{ WORK_USID }
+	            , #{ WORK_IP   }
+	            , #{ WORK_COMP }
+	            , #{ USER_ID   }
+	            , #{ COMP_ID   }
+	            , #{ MENU_ID   }
+	            , #{ UPMENU_ID }
+	            , #{ FOLD_YSNO }
+	            , #{ FOLD_NM   }
+	            , #{ SORT_ORDR }
+	        )
+	        
+	    </trim>
+	    
+    </insert>
+
+    <!-- **************************************
+    NAME  : MyMenu 삭제
+    PARAM : 
+    MEMO  : 
+    *************************************** -->
+    <delete id="DELETEMYMENU" parameterType="map">
+    	
+	    <trim prefix="{ call" suffix="}">
+	    	
+	        SP_COM_MYMENU_DEL (
+	              #{ WORK_USID }
+	            , #{ WORK_IP   }
+	            , #{ WORK_COMP }
+	            , #{ USER_ID   }
+	            , #{ COMP_ID   }
+	            , #{ MENU_ID   }
+	        )
+	        
+	    </trim>
+	    
+    </delete>
+
+    <!-- **************************************
+    NAME  : 접속 로그 기록
+    PARAM : 
+    MEMO  : 
+    *************************************** -->
+    <insert id="LOGCONN" parameterType="map">
+    	
+	    <trim prefix="{ call" suffix="}">
+	    	
+	        SP_LOG_CONN (
+	              #{ USER_IDXX }
+	            , #{ COMP_IDXX }
+	            , #{ CONN_TYPE }
+	            , #{ FAIL_YSNO }
+	            , #{ FAIL_MSGX }
+	            , #{ WORK_SESS }
+	            , #{ WORK_IPXX }
+	            , #{ WORK_MACX }
+	            , #{ SERV_TYPE }
+	        )
+	        
+	    </trim>
+	    
+    </insert>
+
+    <!-- **************************************
+    NAME  : 메뉴 로그 기록
+    PARAM : 
+    MEMO  : 
+    *************************************** -->
+    <insert id="LOGMENU" parameterType="map">
+    	
+	    <trim prefix="{ call" suffix="}">
+	    	
+	        SP_LOG_MENU(
+	              #{ WORK_USID }
+	            , #{ MENU_ID   }
+	            , #{ WORK_COMP }
+	            , #{ ACES_TYPE }
+	            , #{ SESS_ID   }
+	            , #{ WORK_IP   }
+	            , #{ WORK_MAC  }
+	        )
+	        
+	    </trim>
+	    
+    </insert>
+
+    <!-- **************************************
+    NAME  : 사용자 전체 삭제
+    PARAM : 
+    MEMO  : 
+    *************************************** -->
+    <delete id="SP_IF_TA_USER_M_DEL00" parameterType="map">
+    	
+	    <trim prefix="{ call" suffix="}">
+	    	
+	        SP_IF_TA_USER_M_DEL00()
+	        
+	    </trim>
+	    
+    </delete>
+
+    <!-- **************************************
+    NAME  : 사용자 전체 삭제
+    PARAM : 
+    MEMO  : 
+    *************************************** -->
+    <insert id="SP_IF_TA_USER_M_INS00" parameterType="map">
+    	
+	    <trim prefix="{ call" suffix="}">
+	    	
+	        SP_IF_TA_USER_M_INS00(
+	        	
+		          #{ PE_ID		}
+				, #{ PSWD4		}
+				, #{ SSN		}
+				, #{ PE_KNM		}
+				, #{ PE_GB		}
+				, #{ BRAN_CD	}
+				, #{ TEAM_CD	}
+				, #{ ORG_CD		}
+				, #{ DTY_GB		}
+				, #{ CLSS_GB	}
+				, #{ TFA_GB		}
+				, #{ TFA_GRD_GB	}
+				, #{ HP_COM_GB	}
+				, #{ HP_GUK		}
+				, #{ HP_NO		}
+				, #{ CMSN_YMD	}
+				, #{ C_EMAIL	}
+	        
+	        )
+	        
+	    </trim>
+	    
+    </insert>
+
+    <!-- **************************************
+    NAME  : 공통 코드 마스터 등록
+    PARAM : 
+    MEMO  : 
+    *************************************** -->
+    <insert id="SP_IF_TA_CODE_M" parameterType="map">
+    	
+	    <trim prefix="{ call" suffix="}">
+	    	
+	        SP_IF_TA_CODE_M(
+	        	
+		          #{ UPP_CD_ID	 }
+				, #{ UPP_CD_NM	 }
+				, #{ UPP_CD_DESC }
+				, #{ UPP_SRT_ORD }
+				, #{ USE_YN		 }
+	        
+	        )
+	        
+	    </trim>
+	    
+    </insert>
+
+    <!-- **************************************
+    NAME  : 공통 코드 디테일 등록
+    PARAM : 
+    MEMO  : 
+    *************************************** -->
+    <insert id="SP_IF_TA_CODE_D" parameterType="map">
+    	
+	    <trim prefix="{ call" suffix="}">
+	    	
+	        SP_IF_TA_CODE_D(
+	        	
+		          #{ CD_ID		 }
+				, #{ UPP_CD_ID	 }
+				, #{ CD_NM		 }
+				, #{ CD_LEV		 }
+				, #{ CD_DESC	 }
+				, #{ SRT_ORD	 }
+				, #{ ATTR1		 }
+				, #{ ATTR2		 }
+				, #{ ATTR3		 }
+				, #{ ATTR4		 }
+				, #{ ATTR5		 }
+				, #{ USE_YN		 }
+	        
+	        )
+	        
+	    </trim>
+	    
+    </insert>
+    
+    <!-- **************************************
+    NAME  : 다국어관리 조회
+    PARAM : 
+    MEMO  : 
+    *************************************** -->
+    <select id="LANGXM" parameterType="map" resultType="map">
+        SELECT  LANG_CODE  
+               ,LANG_NAME  
+               ,USEX_YSNO  
+               ,REMK_DESC  
+               ,MAIN_YSNO  
+               ,REPL_LANG  
+               ,SORT_ORDR  
+          FROM  TM_LANGXM  
+    </select>
+    
+     <!-- **************************************
+    NAME  : 다국어워드 조회
+    PARAM : 
+    MEMO  : 
+    *************************************** -->
+    <select id="LANGWORD" parameterType="map" resultType="map">
+		SELECT WORD_CODE
+		      ,WORD_VALU
+		  FROM TM_LANG_WORD
+		 WHERE LANG_CODE = #{LANG_CODE}
+		   AND USEX_YSNO = '1'
+		   AND AUTO_YSNO = '0'
+    </select>
+    
+    <!-- **************************************
+    NAME  : 다국어 자동매핑
+    PARAM : 
+    MEMO  : 
+    *************************************** -->
+    <select id="LANGAUTO" parameterType="map" resultType="map">
+        SELECT  B.WORD_CODE  				 
+               ,B.WORD_VALU   				 
+               ,D.WORD_VALU AS MAPP_VALU 	 
+          FROM  TM_LANGXM A
+          JOIN  TM_LANG_WORD B   			 
+            ON  A.LANG_CODE = B.LANG_CODE
+     LEFT JOIN  TM_LANGXM C
+            ON  C.LANG_CODE = #{LANG_CODE}
+     LEFT JOIN  TM_LANG_WORD D   			 
+            ON  C.LANG_CODE = D.LANG_CODE
+           AND  B.WORD_CODE = D.WORD_CODE
+           AND  D.USEX_YSNO = '1'
+         WHERE  A.MAIN_YSNO = '1'
+           AND  B.USEX_YSNO = '1'
+           AND  B.AUTO_YSNO = '1'
+      ORDER BY B.WORD_CODE           
+    </select>
+    
+    <!-- **************************************
+    NAME  : 다국어 언어 코드 생성
+    PARAM : 
+    MEMO  : 
+    *************************************** -->
+    <select id="LOCALE" parameterType="map" resultType="map">
+    	
+		SELECT A0.LANG_CODE
+		     , A0.LANG_NAME
+		     , A0.SORT_ORDR
+		  FROM (
+		        SELECT ''                     AS LANG_CODE
+		             , 'default user setting' AS LANG_NAME
+		             , 0                      AS SORT_ORDR
+		          FROM DUAL
+		        
+		        UNION ALL
+		        
+		        SELECT A0.LANG_CODE AS LANG_CODE /* 언어셋 코드 */
+		             , A0.LANG_NAME AS LANG_NAME /* 언어셋 명칭 */
+		             , A0.SORT_ORDR AS SORT_ORDR /* 언어셋 정렬 순서 */
+		          FROM TM_LANGXM AS A0 ) AS A0
+         ORDER BY A0.SORT_ORDR ASC
+		
+    </select>
+    
+    <!-- **************************************
+    NAME  : 리포트 권한 조회
+    PARAM : 
+    MEMO  : 
+    *************************************** -->
+    <select id="AUTH_REPORT" parameterType="map" resultType="map">
+    
+	    <trim prefix="{ call" suffix="}">
+	    
+	        SP_COM_AUTH_REPORT (
+				  #{ USER_ID   }
+			)
+	    </trim>
+	    
+    </select>
+
+</mapper>

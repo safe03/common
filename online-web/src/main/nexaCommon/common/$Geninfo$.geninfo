@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <GenInfo version="1.1">
+    <Rule>
+      <ENV rule_version="1.05"/>
+      <ADL rule_version="1.14"/>
+      <FDL rule_version="1.04"/>
+      <XCSS rule_version="1.04"/>
+      <Script rule_version="1.02"/>
+      <GeneratorInfo rule_version="1.2"/>
+    </Rule>
+    <Info project="D:\project\dev_test\workspace\COMMON\online-web\src\main\nexaCommon\common\" generated="D:\project\dev_test\workspace\COMMON\online-web\src\main\webapp\comUi\">
+      <File url="typedefinition.xml" checksum="20240129120017" errormsg=""/>
+      <File url="appvariables.xml" checksum="20240129115405" errormsg=""/>
+      <File url="environment.xml" checksum="20240129142012" errormsg=""/>
+      <File url="Application_Desktop.xadl" checksum="20240129131106" errormsg=""/>
+      <File url="FrameBase\login.xfdl" checksum="20240129130008" errormsg=""/>
+      <File url="nexacrolib\framework\Framework.json" checksum="20230629133614" errormsg=""/>
+      <File url="nexacrolib\resources\Resource.json" checksum="20230629133614" errormsg=""/>
+      <File url="FrameBase\topFrame.xfdl" checksum="20240129130506" errormsg=""/>
+      <File url="FrameBase\leftFrame.xfdl" checksum="20240129130437" errormsg=""/>
+      <File url="FrameBase\workFrame.xfdl" checksum="20240129130546" errormsg=""/>
+      <File url="nexacrolib\component\CompBase.json" checksum="20240129135519" errormsg=""/>
+      <File url="nexacrolib\component\ComComp.json" checksum="20240129135519" errormsg=""/>
+      <File url="nexacrolib\component\Grid.json" checksum="20240129135519" errormsg=""/>
+      <File url="nexacrolib\component\ListView.json" checksum="20240129135519" errormsg=""/>
+      <File url="nexacrolib\component\DeviceAPI.json" checksum="20240129135519" errormsg=""/>
+      <File url="_resource_\_theme_\common\theme.xcss" checksum="20240129142250" errormsg=""/>
+    </Info>
+  </GenInfo>
+</root>

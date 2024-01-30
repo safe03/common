@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AADA0010">
+	
+    <select id="SEL00" parameterType="map" resultType="map">
+    <!-- AADA0010.SEL00 :: 권한 그룹 조회하는 쿼리 -->
+    	
+		<trim prefix="{ call" suffix="}">
+		
+			SP_AADA0010_SEL00 ( 
+								#{ WORK_USID     }
+                              , #{ WORK_IP       }
+                              , #{ WORK_COMP     }
+                              , #{ pCOMP_ID      }
+                              , #{ pAUTH_GR_CDNM }
+                              )
+    		
+    	</trim>
+    	
+    </select>
+	
+    <select id="SEL10" parameterType="map" resultType="map">
+    <!-- AADA0010.SEL10 :: 부여 권한 리스트 조회하는 쿼리 -->
+    	
+		<trim prefix="{ call" suffix="}">
+		
+			SP_AADA0010_SEL10 ( 
+								#{ WORK_USID   }
+                              , #{ WORK_IP     }
+                              , #{ WORK_COMP   }
+                              , #{ pCOMP_ID    }
+                              , #{ pAUTH_GR_CD }
+                              , #{ pMODU_ID    }
+                              )
+    		
+    	</trim>
+    	
+    </select>
+    
+    <insert id="INS00" parameterType="map">
+    <!-- AADA0010.INS00 :: 그룹 권한 리스트 등록하는 쿼리 -->
+    	
+		<trim prefix="{ call" suffix="}">
+		
+			SP_AADA0010_INS00 ( 
+								#{ WORK_USID  }
+                              , #{ WORK_IP    }
+                              , #{ WORK_COMP  }
+						       ,#{ COMP_ID    }
+						       ,#{ AUTH_GR_CD }
+						       ,#{ AUTH_GR_NM }
+                              )
+    		
+    	</trim>
+    	
+    </insert>
+    
+    <update id="UPD00" parameterType="map">
+    <!-- AADA0010.UPD00 :: 그룹 권한 리스트 수정하는 쿼리 -->
+    	
+		<trim prefix="{ call" suffix="}">
+		
+			SP_AADA0010_UPD00 ( 
+								#{ WORK_USID  }
+                              , #{ WORK_IP    }
+                              , #{ WORK_COMP  }
+						       ,#{ COMP_ID    }
+						       ,#{ AUTH_GR_CD }
+						       ,#{ AUTH_GR_NM }
+                              )
+    		
+    	</trim>
+    	
+    </update>
+    
+    <delete id="DEL00" parameterType="map">
+    <!-- AADA0010.DEL00 :: 그룹 권한 리스트 수정하는 쿼리 -->
+    	
+		<trim prefix="{ call" suffix="}">
+		
+			SP_AADA0010_DEL00 ( 
+								#{ WORK_USID  }
+                              , #{ WORK_IP    }
+                              , #{ WORK_COMP  }
+						       ,#{ COMP_ID    }
+						       ,#{ AUTH_GR_CD }
+						       ,#{ AUTH_GR_NM }
+                              )
+    		
+    	</trim>
+    	
+    </delete>
+    
+    <update id="SAV10" parameterType="map">
+    <!-- AADA0010.SAV10 :: 부여 권한 리스트 저장(등록/수정)하는 쿼리 -->
+    	
+		<trim prefix="{ call" suffix="}">
+		
+			SP_AADA0010_SAV10 ( 
+								#{ WORK_USID   }
+                              , #{ WORK_IP     }
+                              , #{ WORK_COMP   }                    
+						       ,#{ COMP_ID     }                    
+						       ,#{ AUTH_GR_CD  }                    
+						       ,#{ MENU_ID     }                    
+						       ,#{ FORM_AUTH   }                    
+						       ,#{ SER_AUTH    }                    
+						       ,#{ INS_AUTH    }                    
+						       ,#{ DEL_AUTH    }                    
+						       ,#{ SAV_AUTH    }                    
+						       ,#{ EXC_AUTH    }                    
+						       ,#{ PRT_AUTH    }                    
+						       ,#{ AUTH_LEVEL  }                    
+						       ,#{ ADD_AUTH    }    
+                              )
+    		
+    	</trim>
+    	
+    </update>
+
+</mapper>

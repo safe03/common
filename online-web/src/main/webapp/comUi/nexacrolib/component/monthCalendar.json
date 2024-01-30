@@ -1,0 +1,28 @@
+﻿{
+	"name": "monthCalendar",
+	"moduletype": "component",
+	"version": "0",
+	"minnexacroversion": "",
+	"description": "월력",
+	"license": "",
+	"objInfo": [	
+    "monthCalendar/_metainfo_/monthCalendar.info"
+	],
+	"scripts": [
+    "monthCalendar/monthCalendar.xcdl.js"
+	],
+	"designscripts": [
+
+	],
+	"help": "",	
+	"xcss": "monthCalendar/_xcss_/monthCalendar.xcss",
+	"images": "monthCalendar/_images_/",	
+	"licensefiles": "",
+	"icons": "monthCalendar/_icons_/",
+	"userfolder": [
+
+	],
+	"contentseditor": [
+
+	]
+}

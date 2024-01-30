@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="COMFILE">
+    
+    <!-- **************************************
+    NAME  : 신규 파일 그룹 아이디 조회
+    PARAM : 
+    MEMO  : 
+    *************************************** -->
+    <select id="SEARCH_NEW_FILE_GROUP" parameterType="map" resultType="map">
+    	
+        <trim prefix="{ call" suffix="}">
+        	
+	        SP_COMMON_FILE(
+	             #{WORK_USID}
+	            ,#{WORK_IP}
+	            ,#{WORK_COMP}
+	            ,'SEARCH_FILE_ID'
+	            ,NULL
+	            ,#{COMP_ID}
+	            ,NULL
+	            ,NULL
+	            ,NULL
+	            ,#{WORK_CD}
+	            ,NULL
+	            ,NULL
+	            ,NULL
+	            ,NULL
+	            ,NULL
+	            ,NULL
+	            ,NULL
+	            ,NULL
+	            ,NULL
+	            ,NULL
+	            ,NULL
+	            ,NULL
+	            ,NULL
+	        )
+	        
+        </trim>
+        
+    </select>
+    
+
+    <!-- **************************************
+    NAME  : 신규 파일 아이디 생성
+    PARAM : 
+    MEMO  : 
+    *************************************** -->
+    <insert id="INSERT_NEW_FILE_GROUP" parameterType="map">
+        <trim prefix="{ call" suffix="}">
+        SP_COMMON_FILE(
+             #{WORK_USID}
+            ,#{WORK_IP}
+            ,#{WORK_COMP}
+            ,'INSERT_FILEXM'
+            ,#{FILE_ID}
+            ,#{COMP_ID}
+            ,#{FILE_PATH}
+            ,NULL
+            ,NULL
+            ,#{WORK_CD}
+            ,#{LOCK_YSNO}
+            ,#{LOCK_PSWD}
+            ,#{REMARK}
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+        )
+        </trim>
+    </insert>
+    
+    <!-- **************************************
+    NAME  : 파일 그룹 업데이트
+    PARAM : 
+    MEMO  : 
+    *************************************** -->
+    <insert id="UPDATE_FILE_GROUP" parameterType="map">
+		
+        <trim prefix="{ call" suffix="}">
+        SP_COMMON_FILE(
+             #{WORK_USID}
+            ,#{WORK_IP}
+            ,#{WORK_COMP}
+            ,'UPDATE_FILEXM'
+            ,#{FILE_ID}
+            ,#{COMP_ID}
+            ,#{FILE_PATH}
+            ,NULL
+            ,NULL
+            ,#{WORK_CD}
+            ,#{LOCK_YSNO}
+            ,#{LOCK_PSWD}
+            ,#{REMARK}
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+        )
+        </trim>
+
+    </insert>
+    
+
+    <!-- **************************************
+    NAME  : 신규 파일 아이디 삭제
+    PARAM : 
+    MEMO  : 
+    *************************************** -->
+    <delete id="DELETE_FILE_GROUP" parameterType="map">
+        <trim prefix="{ call" suffix="}">
+        SP_COMMON_FILE(
+             #{WORK_USID}
+            ,#{WORK_IP}
+            ,#{WORK_COMP}
+            ,'DELETE_FILEXM'
+            ,#{FILE_ID}
+            ,#{COMP_ID}
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+        )
+        </trim>
+    </delete>
+
+    <!-- **************************************
+    NAME  : 신규 파일 아이디 삭제
+    PARAM : 
+    MEMO  : 
+    *************************************** -->
+    <delete id="DELETE_FILE" parameterType="map">
+        <trim prefix="{ call" suffix="}">
+        SP_COMMON_FILE(
+             #{WORK_USID}
+            ,#{WORK_IP}
+            ,#{WORK_COMP}
+            ,'DELETE_FILEXD'
+            ,#{FILE_ID}
+            ,#{COMP_ID}
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,#{FILE_SEQ}
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+        )
+        </trim>
+    </delete>
+
+    
+    <!-- **************************************
+    NAME  : 신규 파일 아이디 조회
+    PARAM : 
+    MEMO  : 
+    *************************************** -->
+    <select id="SEARCH_NEW_FILE" parameterType="map" resultType="map">
+        <trim prefix="{ call" suffix="}">
+        SP_COMMON_FILE(
+             #{WORK_USID}
+            ,#{WORK_IP}
+            ,#{WORK_COMP}
+            ,'SEARCH_FILE_SEQ'
+            ,#{FILE_ID}
+            ,#{COMP_ID}
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+        )
+        </trim>
+    </select>
+    
+    <!-- **************************************
+    NAME  : 신규 파일 아이디 생성
+    PARAM : 
+    MEMO  : 
+    *************************************** -->
+    <insert id="INSERT_NEW_FILE" parameterType="map">
+        <trim prefix="{ call" suffix="}">
+        SP_COMMON_FILE(
+             #{WORK_USID}
+            ,#{WORK_IP}
+            ,#{WORK_COMP}
+            ,'INSERT_FILEXD'
+            ,#{FILE_ID}
+            ,#{COMP_ID}
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,#{FILE_SEQ}
+            ,#{FILE_TYPE}
+            ,#{SAVE_NAME}
+            ,#{FILE_NAME}
+            ,#{FILE_EXT}
+            ,#{FILE_SIZE}
+            ,0
+            ,#{IMG_YSNO}
+            ,#{IMG_WSIZE}
+            ,#{IMG_HSIZE}
+        )
+        </trim>
+        
+    </insert>
+    
+    <!-- **************************************
+    NAME  : 파일 다운로드 횟수 업데이트
+    PARAM : 
+    MEMO  : 
+    *************************************** -->
+    <update id="UPDATE_DOWN_FILE_INC" parameterType="map">
+        <trim prefix="{ call" suffix="}">
+        SP_COMMON_FILE(
+             #{WORK_USID}
+            ,#{WORK_IP}
+            ,#{WORK_COMP}
+            ,'UPDATE_DOWNLOAD'
+            ,#{FILE_ID}
+            ,#{COMP_ID}
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,#{FILE_SEQ}
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+        )
+        </trim>
+    </update>
+    
+
+    <!-- **************************************
+    NAME  : 기존 파일 아이디 조회
+    PARAM : 
+    MEMO  : 
+    *************************************** -->
+    <select id="SEARCH_FILE_GROUP" parameterType="map" resultType="map">
+        <trim prefix="{ call" suffix="}">
+        SP_COMMON_FILE(
+             #{WORK_USID}
+            ,#{WORK_IP}
+            ,#{WORK_COMP}
+            ,'SEARCH_FILEXM'
+            ,#{FILE_ID}
+            ,#{COMP_ID}
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+        )
+        </trim>
+    </select>
+
+    <!-- **************************************
+    NAME  : 그룹 아이디를 사용하여 전체 리스트를 조회 하는 함수
+    PARAM : 
+    MEMO  : 
+    *************************************** -->
+    <select id="SEARCH_FILE_LIST" parameterType="map" resultType="map">
+        <trim prefix="{ call" suffix="}">
+        SP_COMMON_FILE(
+             #{WORK_USID}
+            ,#{WORK_IP}
+            ,#{WORK_COMP}
+            ,'SEARCH_FILEXD_LIST'
+            ,#{FILE_ID}
+            ,#{COMP_ID}
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+        )
+        </trim>
+    </select>
+
+    <!-- **************************************
+    NAME  : 그룹 아이디를 사용하여 전체 리스트를 조회 하는 함수
+    PARAM : 
+    MEMO  : 
+    *************************************** -->
+    <select id="SEARCH_FILE_ONE" parameterType="map" resultType="map">
+        <trim prefix="{ call" suffix="}">
+        SP_COMMON_FILE(
+             #{WORK_USID}
+            ,#{WORK_IP}
+            ,#{WORK_COMP}
+            ,'SEARCH_FILEXD'
+            ,#{FILE_ID}
+            ,#{COMP_ID}
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,#{FILE_SEQ}
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+        )
+        </trim>
+    </select>
+    
+    <!-- **************************************
+    NAME  : 로그인 이미지 파일 리스트
+    PARAM : 
+    MEMO  : 
+    *************************************** -->
+    <select id="SEARCH_LOGIN_IMAGE_LIST" parameterType="map" resultType="map">
+    	
+        <trim prefix="{ call" suffix="}">
+        SP_COMMON_FILE(
+             #{WORK_USID}
+            ,#{WORK_IP}
+            ,#{WORK_COMP}
+            ,'SEARCH_LOGIN_IMAGE_LIST'
+            ,#{FILE_ID}
+            ,#{COMP_ID}
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+            ,NULL
+        )
+        </trim>
+    </select>
+
+</mapper>

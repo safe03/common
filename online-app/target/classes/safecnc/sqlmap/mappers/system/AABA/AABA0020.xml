@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AABA0020">
+
+    <!-- **************************************
+    NAME  : 메뉴구조 트리 조회
+    PARAM :
+    MEMO  :
+    *************************************** -->
+    <select id="SEL00" parameterType="map" resultType="map">
+    
+	    <trim prefix="{ call" suffix="}">
+	    	
+	        SP_AAAB0020_SEL00(
+	             #{ WORK_USID  }
+	            ,#{ WORK_IP    }
+	            ,#{ MODU_CD    }
+	        )
+	        
+	    </trim>
+	    
+    </select>
+	
+    <!-- **************************************
+    NAME  : 메뉴구조 상세 조회
+    PARAM :
+    MEMO  :
+    *************************************** -->
+    <select id="SEL10" parameterType="map" resultType="map">
+    
+	    <trim prefix="{ call" suffix="}">
+	    	
+	        SP_AAAB0020_SEL10(
+	             #{ WORK_USID   }
+	            ,#{ WORK_IP     }
+	            ,#{ SORT_INDEX  }
+	        )
+	        
+	    </trim>
+	    
+    </select>
+	
+    <!-- **************************************
+    NAME  : 메뉴구조 갱신
+    PARAM :
+    MEMO  :
+    *************************************** -->
+    <update id="UPD00" parameterType="map" >
+    
+	    <trim prefix="{ call" suffix="}">
+	    	
+	        SP_AAAB0020_UPD00(
+					 #{ WORK_USID  }
+					,#{ WORK_IP    }
+					,#{ MENU_ID    }
+					,#{ MENU_NM    }
+					,#{ MODU_CD    }
+					,#{ SORT_ORDR  }
+					,#{ UPMENU_ID  }
+					,#{ PROG_ID    }
+					,#{ FOLD_YSNO  }
+					,#{ USE_YSNO   }
+					,#{ SA_YSNO    }
+					,#{ REMARK     }
+	        )
+	        
+	    </trim>
+	    
+    </update>
+    
+    <!-- 
+    **************************************
+    NAME  : 메뉴구조 신규
+    PARAM : 
+    MEMO  : 
+    *************************************** 
+    -->
+    <insert id="INS00" parameterType="map">
+    
+        <trim prefix="{ call" suffix="}">
+    
+            SP_AAAB0020_INS00 (  
+				 #{ WORK_USID  }
+				,#{ WORK_IP    }
+				,#{ MENU_ID    }
+				,#{ MENU_NM    }
+				,#{ MODU_CD    }
+				,#{ SORT_ORDR  }
+				,#{ UPMENU_ID  }
+				,#{ PROG_ID    }
+				,#{ FOLD_YSNO  }
+				,#{ USE_YSNO   }
+				,#{ SA_YSNO    }
+				,#{ REMARK     }
+            )
+            
+        </trim>
+        
+    </insert>
+    
+    <!-- 
+    **************************************
+    NAME  : 메뉴구조 삭제
+    PARAM : 
+    MEMO  : 
+    *************************************** 
+    -->
+    <delete id="DEL00" parameterType="map">
+    
+        <trim prefix="{ call" suffix="}">
+        
+            SP_AAAB0020_DEL00 ( 
+				  #{ WORK_USID  }
+				, #{ WORK_IP    }
+				, #{ MENU_ID    }
+            )
+                        
+        </trim>
+        
+    </delete>
+	
+</mapper>

@@ -1,0 +1,17 @@
+﻿{
+	"name": "Splitter",
+	"version": "0",
+	"description": "",
+	"license": "",
+	"objInfo": [	
+    "Splitter/metainfo/EnumInfo.info",
+    "Splitter/metainfo/Splitter.info"
+	],
+	"scripts": [
+    "Splitter/Splitter.js"
+	],
+	"designscripts": [
+    "Splitter/Design/DesignSplitter.js"
+	]
+}
+//# sourceURL=Splitter.json

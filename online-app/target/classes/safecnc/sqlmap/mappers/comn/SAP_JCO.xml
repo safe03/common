@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SAP_JCO">
+    <!-- **************************************
+    NAME  : 연결 정보를 조회한다.
+    PARAM :
+    MEMO  :
+    *************************************** -->
+    <select id="SEL00" parameterType="map" resultType="map">
+		SELECT SAP_ID
+			 , SAP_NM
+			 , CLIENT_NO
+			 , SYSTEM_NO
+			 , USER
+			 , PSWD
+			 , HOST
+			 , BIGO
+		  FROM TA_SAP_M
+		 WHERE SAP_ID = #{SAP_ID}
+    </select>
+   
+</mapper>

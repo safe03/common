@@ -1,0 +1,28 @@
+﻿{
+	"name": "fromtoCalendar",
+	"moduletype": "component",
+	"version": "0",
+	"minnexacroversion": "",
+	"description": "기간달력",
+	"license": "",
+	"objInfo": [	
+    "fromtoCalendar/_metainfo_/fromtoCalendar.info"
+	],
+	"scripts": [
+    "fromtoCalendar/fromtoCalendar.xcdl.js"
+	],
+	"designscripts": [
+    "fromtoCalendar/DesignfromtoCalendar.js"
+	],
+	"help": "",	
+	"xcss": "fromtoCalendar/_xcss_/fromtoCalendar.xcss",
+	"images": "fromtoCalendar/_images_/",	
+	"licensefiles": "",
+	"icons": "fromtoCalendar/_icons_/",
+	"userfolder": [
+
+	],
+	"contentseditor": [
+
+	]
+}

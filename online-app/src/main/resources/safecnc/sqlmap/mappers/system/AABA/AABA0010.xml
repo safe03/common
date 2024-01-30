@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AABA0010">
+
+    <!-- **************************************
+    NAME  : 프로그램 조회
+    PARAM :
+    MEMO  :
+    *************************************** -->
+    <select id="SEL00" parameterType="map" resultType="map">
+    
+	    <trim prefix="{ call" suffix="}">
+	    	
+	        SP_AAAB0010_SEL00(
+	             #{ WORK_USID }
+	            ,#{ WORK_IP   }
+	            ,#{ WORK_COMP }
+	            ,#{ MODU_CD   }
+	            ,#{ PROG_TYPE }
+	            ,#{ PROG_IDNM }
+	        )
+	        
+	    </trim>
+	    
+    </select>
+	
+    <!-- **************************************
+    NAME  : 프로그램 갱신
+    PARAM :
+    MEMO  :
+    *************************************** -->
+    <update id="UPD00" parameterType="map" >
+    
+	    <trim prefix="{ call" suffix="}">
+	    	
+	        SP_AAAB0010_UPD00(
+					 #{WORK_USID  }
+					,#{WORK_IP    }
+					,#{PROG_ID    }
+					,#{PROG_NM    }
+					,#{MODU_CD    }
+					,#{PROG_TYPE  }
+					,#{PROG_PATH  }
+					,#{PC_YSNO    }
+					,#{TAB_YSNO   }
+					,#{MOBILE_YSNO}
+					,#{SAV_YSNO   }
+					,#{EXC_YSNO   }
+					,#{PRT_YSNO   }
+					,#{USE_YSNO   }
+					,#{REMARK     }
+					,#{COMP_ID    }
+					,#{CREATE_YN  }
+					,#{READ_YN    }
+					,#{UPDATE_YN  }
+					,#{DELETE_YN  } 
+	        )
+	        
+	    </trim>
+	    
+    </update>
+    
+    <!-- 
+    **************************************
+    NAME  : 프로그램 신규
+    PARAM : 
+    MEMO  : 
+    *************************************** 
+    -->
+    <insert id="INS00" parameterType="map">
+    
+        <trim prefix="{ call" suffix="}">
+    
+            SP_AAAB0010_INS00 (  
+				 #{WORK_USID  }
+				,#{WORK_IP    }
+				,#{WORK_COMP  }
+				,#{PROG_ID    }
+				,#{PROG_NM    }
+				,#{MODU_CD    }
+				,#{PROG_TYPE  }
+				,#{PROG_PATH  }
+				,#{PC_YSNO    }
+				,#{TAB_YSNO   }
+				,#{MOBILE_YSNO}
+				,#{USE_YSNO   }
+				,#{REMARK     }
+				,#{CREATE_YN  }
+				,#{READ_YN    }
+				,#{UPDATE_YN  }
+				,#{DELETE_YN  }
+            )
+            
+        </trim>
+        
+    </insert>
+    
+    <!-- 
+    **************************************
+    NAME  : 프로그램 삭제
+    PARAM : 
+    MEMO  : 
+    *************************************** 
+    -->
+    <delete id="DEL00" parameterType="map">
+    
+        <trim prefix="{ call" suffix="}">
+        
+            SP_AAAB0010_DEL00 ( 
+				  #{ WORK_USID }
+				, #{ WORK_IP   }
+				, #{ PROG_ID   }
+            )
+                        
+        </trim>
+        
+    </delete>
+	
+</mapper>

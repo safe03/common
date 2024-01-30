@@ -1,0 +1,555 @@
+<?xml version="1.0"?>
+<ruleset xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+name="EgovInspectionRules_eng-3.8"
+xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
+
+	<!-- 
+		추가로 검사가 필요한 항목은 아래 사이트 참고
+		URL :: https://pmd.github.io/latest/pmd_rules_ecmascript_codestyle.html#whileloopsmustusebraces
+	-->
+	
+	<description>Sfd2022 pmd Plugin Basic Ruleset</description>
+	<rule ref="category/ecmascript/errorprone.xml/AvoidTrailingComma" />
+	
+	<!-- 
+		
+		* EmptyWhileStmt
+		*
+		* [while] 조건문에 빈 상태 변경 구문 검사
+		
+		< Example >
+		
+		public void example(Integer a, Integer b) {
+			while (a == b) {
+				// (check)
+			}
+		}
+	-->
+	
+	<rule ref="rulesets/java/empty.xml/EmptyWhileStmt"/>
+	
+	<!-- 
+		
+		* EmptySynchronizedBlock
+		*
+		* [synchronized] 블럭의 빈 상태 변경 구문 검사
+		
+		< Example >
+		
+		public class Example {
+		    public void example() {
+		        synchronized (this) {
+		            // (check)
+		        }
+		    }
+		}
+	-->
+	
+	<rule ref="rulesets/java/empty.xml/EmptySynchronizedBlock"/>
+	
+	<!-- 
+		* EmptyCatchBlock
+		*
+		* [catch & block] 조건문에 빈 상태 변경 구문 검사
+		
+		< Example >
+		
+		try{
+			
+			...
+			
+		}
+		catch(Exception e)
+		{
+			// (check)
+		}
+	-->
+	
+	<rule ref="rulesets/java/empty.xml/EmptyCatchBlock"/>
+	
+	<!-- 
+		* EmptyFinallyBlock
+		*
+		* [finally] 조건문에 빈 상태 변경 구문 검사
+		
+		< Example >
+		
+		try{
+			
+			...
+			
+		}
+		catch(Exception e)
+		{
+			...
+		}
+		finally
+		{
+			// (check)
+		}
+	-->
+	
+	<rule ref="rulesets/java/empty.xml/EmptyFinallyBlock"/>
+	
+	<!-- 
+		* EmptyIfStmt
+		*
+		* [if] 조건문에 빈 상태 변경 구문 검사
+		
+		< Example >
+		
+		if(..)
+		{
+			// (check)
+		}
+	-->
+	
+	<rule ref="rulesets/java/empty.xml/EmptyIfStmt"/>
+	
+	<!-- 
+		* EmptyStatementNotInLoop
+		*
+		* [semicolon] 의 중복 되거나 빈곳에 등록 되는 구문 검사
+		
+		< Example >
+		
+		public void example() {
+		      // (check)
+		      ;
+		      // (check)
+		      System.out.println("duble semicolon");;
+		}
+	-->
+	
+	<rule ref="rulesets/java/empty.xml/EmptyStatementNotInLoop"/>
+	
+	<!-- 
+		* EmptyTryBlock
+		*
+		* [try] 조건문에 빈 상태 변경 구문 검사
+		
+		< Example >
+		
+		public void example() {
+			try{
+				// (check)
+			}
+			catch(..)
+			{
+				...
+			}
+		}
+	-->
+	
+	<rule ref="rulesets/java/empty.xml/EmptyTryBlock"/>
+	
+	<!-- 
+		* AvoidConstantsInterface
+		*
+		* 상수만 있는 인터페이스 구문 검사
+		
+		< Example >
+		 
+		// (check)
+		interface example{
+		   public static final int INVALID=0;
+		}
+	 -->
+	
+	<rule ref="rulesets/java/design.xml/AvoidConstantsInterface"/> 
+   
+	<!--
+		* AvoidThrowingRawExceptionTypes
+		*
+		* throw 처리가 올바르지 않은 구문 검사
+		
+		< Example >
+		
+		public class Example {
+			public void example() throws Exception {
+				// (check)
+				throw new Exception();
+			}
+		}
+	-->
+	
+	<rule ref="rulesets/java/strictexception.xml/AvoidThrowingRawExceptionTypes"/>
+   
+	<!--
+		* EqualsNull
+		*
+		* [null] 처리를 equals로 검사하는 구문 검사
+		
+		String invalidString = "foo";
+		
+		// (check)
+		if (invalidString.equals(null)) {
+		    ...
+		}
+
+	-->
+	
+	<rule ref="rulesets/java/design.xml/EqualsNull"/>
+   
+	<!--
+		* InefficientEmptyStringCheck
+		*
+		* 의미 없는 문자열 체크 구문 검사 
+		
+		public void example(String string) {
+		    if (string != null && string.trim().length() > 0) {
+				// (check)
+		        ...
+		    }
+		}
+
+	-->
+	
+	<rule ref="rulesets/java/strings.xml/InefficientEmptyStringCheck"/>
+	
+	<!--
+		* StringToString
+		*
+		* 문자열을 문자열로 재 변경하는 구문 검사 
+		
+		private String example() {
+			
+		    String string = "...";
+		    
+			// (check)
+		    return string.toString();
+		}
+
+	-->
+	
+	<rule ref="rulesets/java/strings.xml/StringToString"/>
+	
+	<!--
+		* SimplifyBooleanExpressions
+		*
+		* 복잡한 진리 구문 검사 
+		
+		public class Example {
+			// (check)
+			private boolean unSimplify = (isExample() == true);
+			
+			// (uncheck)
+			// private boolean unSimplify = isExample();
+			
+			public isExample() { return false; }
+		}
+
+	-->
+	
+	<rule ref="rulesets/java/design.xml/SimplifyBooleanExpressions"/>
+	
+	<!--
+		* SwitchStmtsShouldHaveDefault
+		*
+		* [swtich] 구문에 default가 없는 구문 검사 
+		
+		class Example {
+			
+			public void example() {
+				
+			    switch (...) {
+			      case [statement] : ...
+			      case [statement] : ...
+				  // (check)
+			      // missing default
+			    }
+		    }
+		}
+
+	-->
+	
+	<rule ref="rulesets/java/design.xml/SwitchStmtsShouldHaveDefault"/>
+   
+	<!--
+		* SystemPrintln
+		*
+		* [System] 의 print.ln이 등록 되어 있는 구문 검사 
+		
+		public void example() {
+			
+			// (check)
+		    System.out.println(...);
+	    }
+
+	-->
+	
+	<rule ref="rulesets/java/logging-java.xml/SystemPrintln"/>
+   
+	<!--
+		* UnnecessaryConversionTemporary
+		*
+		* 문자열과 숫자를 상호 변경하는 구문 검사 
+		
+		public String convert(int iint) {
+		    String string = new Integer(iint).toString();
+		
+			// (check)
+		    return Integer.toString(string);
+		}
+
+	-->
+	<rule ref="rulesets/java/unnecessary.xml/UnnecessaryConversionTemporary"/>
+	  
+	<!--
+		* UnusedFormalParameter
+		*
+		* 사용하지 않는 파라미터 구문 검사 
+		
+		public class Example {
+		    private void bar(String param) {
+				// (check)
+		    }
+		}
+	
+	-->
+	
+	<rule ref="rulesets/java/unusedcode.xml/UnusedFormalParameter"/>
+   
+	<!--
+		* UnusedFormalParameter
+		*
+		* 사용하지 않는 파라미터 구문 검사 
+		
+		public class Example {
+			
+			// (check)
+		    private static int UnusedStaticParameter = 2;
+		    
+			// (check)
+		    private int UnusedParameter = 5;
+		    
+		    private int usedParameter = 6;
+		    
+		    public int example() {
+		        return j++;
+		    }
+		}
+	
+	-->
+	
+   <rule ref="rulesets/java/unusedcode.xml/UnusedPrivateField"/>
+   
+	<!--
+		* UnusedPrivateMethod
+		*
+		* 사용하지 않는 메소드 구문 검사 
+		
+		public class Example {
+			
+			// (check)
+		    private int example() { }
+		}
+	
+	-->
+   
+	<rule ref="rulesets/java/unusedcode.xml/UnusedPrivateMethod"/>
+   
+	<!--
+		* UselessStringValueOf
+		*
+		* 사용하지 않아도 될 valueOf 구문 검사 
+		
+		public String convert(int iint) {
+			
+		    String string;
+		    
+			// (check)
+		    string = "invalid" + String.valueOf(iint);
+		    
+			// (uncheck)
+		    string = "valid" + iint;
+		    
+		    return string;
+		}
+	
+	-->
+   
+	<rule ref="rulesets/java/strings.xml/UselessStringValueOf"/>
+   
+   
+	<!--
+		* WhileLoopsMustUseBraces
+		*
+		* [while] 문장에 브레슬릿({) 필수 구문 검사 
+		
+		// (check)
+		while (true) x++;
+	
+	-->
+   <rule ref="rulesets/java/braces.xml/WhileLoopsMustUseBraces"/>
+   
+   
+   <!-- 
+   
+   		이곳에서 부터는 EcmaScript의 표준안을 제시하는 영역입니다.
+   		
+    -->
+    
+	<!--
+		* AvoidWithStatement
+		*
+		* [with] 문장을 배제하는 구문 검사 
+		
+		// (check)
+		with (object) { 
+			...
+		}
+	
+	-->
+   <rule ref="category/ecmascript/bestpractices.xml/AvoidWithStatement" />
+   
+   
+	<!--
+		* ConsistentReturn
+		*
+		* [return] 문장의 이양적 구조를 검사 
+		
+		// (check)
+		if(..)
+		{
+			return;
+		}
+		return true;
+	
+	-->
+   <!-- <rule ref="category/ecmascript/bestpractices.xml/ConsistentReturn" /> -->
+   
+	<!--
+		* GlobalVariable
+		*
+		* [global] 변수의 사용을 검사 
+		
+	    notDeclaredVariable = 1;    // this will create a global variable and trigger the rule
+	
+	    var someVar = 1;            // this is a local variable, that's ok
+	
+	    window.otherGlobal = 2;     // this will not trigger the rule, although it is a global variable.
+	
+	-->
+	 
+	<rule ref="category/ecmascript/bestpractices.xml/GlobalVariable" />
+	
+	
+   
+	<!--
+		* ForLoopsMustUseBraces
+		*
+		* [forin] 문 내부에서 [{]구문을 검사 
+		
+		// Suggest
+		for (var i = 0; i < 42; i++) {
+		    foo();
+		}
+		
+		// Check
+		for (var i = 0; i < 42; i++)
+		    foo();
+	
+	-->
+	<!-- <rule ref="category/ecmascript/codestyle.xml/ForLoopsMustUseBraces" /> -->
+	
+	
+	<!--
+		* IfStmtsMustUseBraces
+		*
+		* [if] 문 내부에서 [{]구문을 검사 
+		
+		// Suggest
+		if (...) {
+		    foo();
+		}
+		
+		// Check
+		if (...)
+		    foo();
+	
+	-->
+	<!-- <rule ref="category/ecmascript/codestyle.xml/IfStmtsMustUseBraces" /> -->
+	
+	<!--
+		* IfElseStmtsMustUseBraces
+		*
+		* [if..else] 문 내부에서 [{]구문을 검사 
+		
+		// Suggest
+		if (...) {
+		    ...
+		}
+		else{
+			...
+		}
+		
+		// Check
+		if (...)
+		    ...
+		else
+			...
+	
+	-->
+	<!-- <rule ref="category/ecmascript/codestyle.xml/IfElseStmtsMustUseBraces" /> -->
+	
+	
+	<!--
+		* NoElseReturn
+		*
+		* [if..else] 문 내부에서 [{]구문을 검사 
+		
+		// Check
+		if (...) {
+		    return y;
+		} else {
+		    return z;
+		}
+		
+		// Suggest
+		if (...) {
+		    return y;
+		}
+		return z;
+	
+	-->
+	<!-- <rule ref="category/ecmascript/codestyle.xml/NoElseReturn" /> -->
+	
+	
+	<!--
+		* UnnecessaryBlock
+		*
+		* 접근 불가능한 영역에 구문을 검사
+		
+		if (foo) {
+		    // Suggest
+		}
+		if (bar) {
+		    {
+		        // Check
+		    }
+		}
+	
+	-->
+	<!-- <rule ref="category/ecmascript/codestyle.xml/UnnecessaryBlock" /> -->
+	
+	
+	<!--
+		* UnreachableCode
+		*
+		* 접근 불가능한 영역에 구문을 검사
+		
+		if (foo) {
+		    // Suggest
+		}
+		if (bar) {
+		    {
+		        // Check
+		    }
+		}
+	
+	-->
+	<!-- <rule ref="category/ecmascript/codestyle.xml/UnreachableCode" /> -->
+   
+</ruleset>

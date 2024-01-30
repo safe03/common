@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AAAA0110">
+
+    <!-- **************************************
+    NAME  : 다국어 코드관리 조회
+    PARAM : 
+    MEMO  : 
+    *************************************** -->
+    <select id="SEL00" parameterType="map" resultType="map">
+    	
+    	SELECT 'KR'                            AS MAIN_LANG
+		    ,IFNULL(A2.LANG_CD,#{LANG_CODE})   AS LANG_CD 
+    	    ,A1.COMM_CD                        AS COMM_CD
+    	    ,A0.COMM_NM                        AS COMM_NM
+    	    ,A1.COMD_CD                        AS COMD_CD
+    	    ,A1.COMD_NM                        AS COMD_NM1
+    	    ,A2.COMD_NM                        AS COMD_NM2
+    	  FROM TA_CODE_M               AS A0
+    	 INNER JOIN TA_CODE_D          AS A1
+    	    ON A0.COMM_CD = A1.COMM_CD
+          LEFT OUTER JOIN TA_CODE_LANG AS A2
+            ON A1.COMM_CD = A2.COMM_CD 
+           AND A1.COMD_CD = A2.COMD_CD 
+		<if test="!MESG_TEXT.equals('') and MESG_TEXT!=null">
+       		WHERE A1.COMM_CD like '%' #{MESG_TEXT} '%'
+       		   OR A0.COMM_NM like '%' #{MESG_TEXT} '%' 
+       		   OR A1.COMD_CD like '%' #{MESG_TEXT} '%'
+       		   OR A1.COMD_NM like '%' #{MESG_TEXT} '%'
+        </if>
+		ORDER BY A1.COMM_CD 
+    </select>
+    
+	<!-- **************************************
+    NAME  : 다국어 코드 저장
+    PARAM :
+    MEMO  :
+    *************************************** -->
+    <insert id="INS00" parameterType="map">
+		 
+      	DELETE FROM TA_CODE_LANG
+		 WHERE LANG_CD   = #{LANG_CD} 
+		   AND COMM_CD   = #{COMM_CD}
+		   AND COMD_CD   = #{COMD_CD}
+		   ; 
+		  
+		INSERT INTO TA_CODE_LANG (
+		       LANG_CD   
+		     , COMM_CD   
+		     , COMD_CD
+		     , COMD_NM   
+		     , INS_USID
+		     , INS_DATE
+		     , UPD_USID
+		     , UPD_DATE
+		) VALUES (
+		       #{LANG_CD}   
+		     , #{COMM_CD}   
+		     , #{COMD_CD}   
+		     , #{COMD_NM2}   
+		     , #{USERID}
+		     , now()
+		     , #{USERID}
+		     , now()
+		);
+         
+    </insert>
+    
+    <!-- **************************************
+    NAME  : 다국어 코드 삭제
+    PARAM : 
+    MEMO  : 
+    *************************************** -->
+    <delete id="DEL00" parameterType="map">
+    
+      	DELETE FROM TA_CODE_LANG
+		 WHERE LANG_CODE = #{LANG_CODE} 
+		   AND COMM_CD   = #{COMM_CD}
+		   AND COMD_CD   = #{COMD_CD}
+		   ; 
+	
+    </delete>
+    
+    
+    
+    
+	
+</mapper>

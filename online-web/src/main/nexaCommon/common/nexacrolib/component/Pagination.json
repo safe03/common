@@ -1,0 +1,28 @@
+﻿{
+	"name": "Pagination",
+	"moduletype": "component",
+	"version": "0",
+	"minnexacroversion": "",
+	"description": "",
+	"license": "",
+	"objInfo": [	
+    "Pagination/_metainfo_/Pagination.info"
+	],
+	"scripts": [
+    "Pagination/Pagination.xcdl.js"
+	],
+	"designscripts": [
+    "Pagination/DesignPagination.js"
+	],
+	"help": "",	
+	"xcss": "Pagination/_xcss_/Pagination.xcss",
+	"images": "Pagination/_images_/",	
+	"licensefiles": "",
+	"icons": "",
+	"userfolder": [
+
+	],
+	"contentseditor": [
+
+	]
+}

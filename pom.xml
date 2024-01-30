@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.4.5</version>
+		<relativePath/> 
+	</parent>
+	
+	<groupId>com.safecnc</groupId>
+	<artifactId>COMMON</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>safecnc parent application</name>
+	
+	<description>Demo project for Spring Boot</description>
+	
+	<!-- application license -->
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+	
+	
+    <modules>
+		<!-- standalone application -->
+		<module>online-app</module>
+	
+		<!-- web application -->
+		<module>online-web</module>
+	</modules>
+    
+	<!-- application developer(s) -->
+	<!--
+	<developers>
+		<developer>
+			<id>justin-henry@1067444865</id>
+			<name>justin henry</name>
+			<email>kim0lil@safecnc.co.kr</email>
+			<url>http://www.safecnc.co.kr</url>
+			<organization>safecnc</organization>
+		</developer>
+		<developer>
+			<id>chris@1040132276</id>
+			<name>Chris Lee</name>
+			<email>necropolis00@safecnc.co.kr</email>
+			<url>http://www.safecnc.co.kr</url>
+			<organization>safecnc</organization>
+		</developer>
+	</developers>
+	 -->
+	 
+	<!-- application owner information -->
+	<organization>
+		<name>safecnc</name>
+		<url>http://www.safecnc.co.kr</url>
+	</organization>
+	
+	
+	<!-- properties, use this project -->
+	<properties>
+		
+		<!-- project reporting and builder encoding -->
+		<java.version>1.8</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<spring.maven.artifact.version>5.3.6</spring.maven.artifact.version>
+		<java-jwt.version>3.19.2</java-jwt.version>
+		<javax.mail.version>1.6.2</javax.mail.version>
+		<tomcat.version>9.0.26</tomcat.version>
+		<commons-dbcp2.version>2.8.0</commons-dbcp2.version>
+		<standard.version>1.1.2</standard.version>
+		<commons-fileupload.version>1.3.1</commons-fileupload.version>
+		<sfw-nexacro.version>0.1.0-SNAPSHOT</sfw-nexacro.version>
+		<antlr.version>3.5</antlr.version>
+		<zip4j.version>1.3.3</zip4j.version>
+		<jasypt-spring4.version>1.9.3</jasypt-spring4.version>
+		<log4jdbc.version>1.2</log4jdbc.version>
+		<log4jdbc-remix.version>0.2.7</log4jdbc-remix.version>
+		<jsch.version>0.1.55</jsch.version>
+		<commons-net.version>3.8.0</commons-net.version>
+		<mysql.version>8.0.23</mysql.version>
+		<lorem.version>2.1</lorem.version>
+		<sap.sapjco3.version>3.0.11</sap.sapjco3.version>
+	</properties>    
+    
+    
+	<!-- Repositories(Maven Central, safecnc public) -->
+	<repositories>
+
+		<!-- maven central repository -->
+		<repository>
+			<id>mvn2s</id>
+			<url>https://repo1.maven.org/maven2/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+
+		<!-- ceylon repository -->
+		<!-- 
+		<repository>
+			<id>ceylon</id>
+			<url>https://modules.ceylon-lang.org/maven/1/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		-->
+		<!-- safecnc maven release and snapshot repository -->
+		<!--
+		<repository>
+			<id>maven-public</id>
+			<url>http://dev.safecnc.co.kr:8081/repository/maven-public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+		-->
+		<!-- tobesoft maven release and snapshot repository -->
+		<!--  -->
+		<repository>
+			<id>tobesoft-maven-public</id>
+			<url>http://mangosteen.tobesoft.co.kr/nexus/repository/maven-public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		
+	</repositories>
+	
+	<dependencies>
+		<!-- ===================================================================0= -->
+		<!-- ====================== spring module(s) start =====================0= -->
+		<!-- ===================================================================0= -->
+		
+		<!-- spring boot starter -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions> <!-- exclude common logging -->
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<!-- spring boot thymeleaf view -->
+	    <dependency>
+	        <groupId>org.springframework.boot</groupId>
+	        <artifactId>spring-boot-starter-thymeleaf</artifactId>
+	    </dependency>
+		
+		<!-- spring boot security starter -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		
+		<!-- spring messaging service library -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-messaging</artifactId>
+		</dependency>
+		
+		<!-- spring context-support library -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+		</dependency>
+		
+		<!-- spring kafka Message-Broker -->
+		<dependency>
+			<groupId>org.springframework.kafka</groupId>
+			<artifactId>spring-kafka</artifactId>
+		</dependency>
+		
+		<!-- spring session cluster or session clue -->
+		<dependency>
+			<groupId>org.springframework.session</groupId>
+			<artifactId>spring-session-core</artifactId>
+		</dependency>
+		
+		<!-- spring websocket connection library -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-websocket</artifactId>
+		</dependency>
+		
+		<!-- for API document management (openapi-ui) -->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.6.4</version>
+		</dependency>
+		
+		<!-- for handling lombok annotations (lombok) -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+		
+		<!-- excluding logback from starter-logging and then serially concatenate  -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+		</dependency>
+		
+		<!-- devtools development -->
+		
+		
+		<!-- spring configuration processor -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+		
+		<!-- ===================================================================0= -->
+		<!-- ======================= spring module(s) end ======================0= -->
+		<!-- ===================================================================0= -->
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<!-- ===================================================================1= -->
+		<!-- ===================== 3rt party library(s) start ==================1= -->
+		<!-- ===================================================================1= -->
+		
+		<!-- 1. with Sun and Oracle Cooperation -->
+		<!-- jsp basic library taging, servlet(jsp, jstl), ant-matcher -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		
+		<!-- java mail sender -->
+		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>${javax.mail.version}</version>
+		</dependency>
+		
+		<!-- java servlet(jsp) taglibrary -->
+		<dependency>
+		    <groupId>javax.servlet</groupId>
+		    <artifactId>jstl</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>taglibs</groupId>
+			<artifactId>standard</artifactId>
+			<version>${standard.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+
+		
+		<!-- 2. with Apache Software Foundation -->
+		<!-- for file management (commons-fileupload) -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>${commons-fileupload.version}</version>
+		</dependency>
+		
+		<!-- database connection and management library -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-dbcp2</artifactId>
+		</dependency>
+		
+		
+		<!-- 3. Sap Cooperation -->
+		<!-- Jco ConnectorJ for SAP -->
+		<dependency>
+		    <groupId>com.github.easonjim</groupId>
+		    <artifactId>com.sap.conn.jco.sapjco3</artifactId>
+		    <version>${sap.sapjco3.version}</version>
+		    
+		</dependency>
+		
+		<!-- 4. with Safecnc -->
+		<!-- for nexacro ui-adaptor (sfw-nexacro) -->
+		<dependency>
+			<groupId>com.safecnc</groupId>
+			<artifactId>sfw-nexacroN</artifactId>
+			<version>${sfw-nexacro.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<!-- ===================================================================1= -->
+		<!-- ====================== 3rt party library(s) end ===================1= -->
+		<!-- ===================================================================1= -->
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<!-- ===================================================================2= -->
+		<!-- ====================== user library(s) start ======================2= -->
+		<!-- ===================================================================2= -->
+		
+		<!-- string parsing library -->
+		<dependency>
+			<groupId>org.antlr</groupId>
+			<artifactId>antlr</artifactId>
+			<version>${antlr.version}</version>
+		</dependency>
+		
+		<!-- lorem data generator (data dump) -->
+		<dependency>
+			<groupId>com.thedeanda</groupId>
+			<artifactId>lorem</artifactId>
+			<version>${lorem.version}</version>
+		</dependency>
+
+		<!-- netty framework for [asyn] syncronize processing -->
+		<dependency>
+			<groupId>io.netty</groupId>
+			<artifactId>netty-all</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>io.projectreactor.netty</groupId>
+			<artifactId>reactor-netty</artifactId>
+		</dependency>
+		
+		<!-- for file encryption compression (zip4j) -->
+		<dependency>
+			<groupId>net.lingala.zip4j</groupId>
+			<artifactId>zip4j</artifactId>
+			<version>${zip4j.version}</version>
+		</dependency>
+		
+		<!-- for encoding and decoding property (jaspty) -->
+		<dependency>
+			<groupId>org.jasypt</groupId>
+			<artifactId>jasypt-spring4</artifactId>
+			<version>${jasypt-spring4.version}</version>
+		</dependency>
+		
+		<!-- loging for jdbc -->
+		<dependency>
+			<groupId>com.googlecode.log4jdbc</groupId>
+			<artifactId>log4jdbc</artifactId>
+			<version>${log4jdbc.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+
+		<!-- Proxy class library for jdbc logging, not applicable in operation -->
+		<dependency>
+			<groupId>org.lazyluke</groupId>
+			<artifactId>log4jdbc-remix</artifactId>
+			<version>${log4jdbc-remix.version}</version>
+		</dependency>
+		
+		<!-- SFTP ssh(JSCH) library -->
+		<dependency>
+		    <groupId>com.jcraft</groupId>
+		    <artifactId>jsch</artifactId>
+		    <version>${jsch.version}</version>
+		</dependency>
+		
+		<!-- FTP Client library -->
+		<dependency>
+		    <groupId>commons-net</groupId>
+		    <artifactId>commons-net</artifactId>
+		    <version>${commons-net.version}</version>
+		</dependency>
+
+		<!-- sap custom manager -->
+		<dependency>
+			<groupId>me.saro</groupId>
+			<artifactId>sap-jco-manager</artifactId>
+			<version>3.0.14.7</version>
+		</dependency>
+		
+		<!-- depend on #sap-jco-manager@3.0.14.7 -->
+		<dependency>
+		    <groupId>me.saro</groupId>
+		    <artifactId>kit</artifactId>
+            <version>0.0.7</version>
+		</dependency>
+		
+		<!-- json web token -->
+		<dependency>
+		    <groupId>com.auth0</groupId>
+		    <artifactId>java-jwt</artifactId>
+		    <version>${java-jwt.version}</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-text -->
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-text</artifactId>
+		    <version>1.9</version>
+		</dependency>
+
+		<!-- ===================================================================2= -->
+		<!-- ======================= user library(s) end =======================2= -->
+		<!-- ===================================================================2= -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+		</dependency>
+	</dependencies>
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			
+				<plugin>
+					<groupId>org.apache.tomcat.maven</groupId>
+					<artifactId>tomcat7-maven-plugin</artifactId>
+					<version>2.2</version>
+					<configuration>
+						<port>80</port>
+						<path>/</path>
+						<systemProperties>
+							<JAVA_OPTS>-Xms256m -Xmx768m -XX:MaxPermSize=256m</JAVA_OPTS>
+						</systemProperties>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<configuration>
+						<source>1.8</source>
+						<target>1.8</target>
+						<encoding>UTF-8</encoding>
+						<maxmem>1024m</maxmem>
+					</configuration>
+				</plugin>
+		</plugins>
+	</build>
+
+</project>

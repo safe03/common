@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project type="module" version="2.0">
+  <ObjInfo>
+    <File url="metainfo\Splitter.info"/>
+  </ObjInfo>
+  <Scripts>
+    <File url="Splitter.js"/>
+  </Scripts>
+  <DesignScripts>
+    <File url="Design\DesignSplitter.js"/>
+  </DesignScripts>
+  <CSSInfo>
+    <PropertyInfo/>
+  </CSSInfo>
+  <StatusInfo/>
+  <MethodInfo/>
+  <EventHandlerInfo/>
+  <CommonInfo>
+    <File url="metainfo\EnumInfo.info"/>
+  </CommonInfo>
+</Project>

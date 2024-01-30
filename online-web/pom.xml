@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<!-- lookup parent from repository -->
+	<parent>
+		<groupId>com.safecnc</groupId>
+		<artifactId>COMMON</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	
+	<!-- project information -->
+	<packaging>war</packaging>
+	<artifactId>online-web</artifactId>
+	<name>safecnc online web application</name>
+	<description>Safecnc Web Application Project</description>
+	
+	<!-- application developer(s) -->
+	<!--
+	<developers>
+		<developer>
+			<id>justin-henry@1067444865</id>
+			<name>The SafeCnc ERP Project Contributors</name>
+			<email>kim0lil@safecnc.co.kr</email>
+			<url>http://www.safecnc.co.kr</url>
+			<organization>The SafeCnc Project</organization>
+		</developer>
+		<developer>
+			<id>Chris@1040132276</id>
+			<name>Chris Lee</name>
+			<email>necropolis00@safecnc.co.kr</email>
+			<url>http://www.safecnc.co.kr</url>
+			<organization>safecnc</organization>
+		</developer>
+	</developers>
+	 -->
+	<!-- properties, use this project -->
+	<properties>
+    	<!-- skip maven test phase -->
+    	<maven.test.skip>true</maven.test.skip>
+    	<application.war.filename>COMMON</application.war.filename>
+	</properties>
+	
+	
+	<!-- 
+		server environment profile(s)
+		       supported type [ local, test, stage, prod ] 
+		       workflow flowing [ local -> test -> stage -> prod -> patch ]
+	-->
+	<profiles>
+		
+		<!-- 
+			environment default setting *local 
+			step. local(*) => test [ nothing version control ]
+		-->
+		<profile>
+			<id>local</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<spring.profiles.active>local</spring.profiles.active>
+			</properties>
+		</profile>
+		
+		<!-- 
+			environment test server setting *test 
+			step. test(*) => stage [ subversion update 0.0.x none release version ]
+		-->
+		<profile>
+			<id>test</id>
+			<properties>
+				<spring.profiles.active>test</spring.profiles.active>
+			</properties>
+		</profile>
+		
+		<!-- 
+			environment staging server setting *stage 
+			step. stage(*) => product [ main version feed control ]
+		-->
+		<profile>
+			<id>stage</id>
+			<properties>
+				<spring.profiles.active>stage</spring.profiles.active>
+			</properties>
+		</profile>
+		
+		<!-- 
+			environment product server setting *prod
+			step. product(*) => fetch(*) [ manage engineer ]
+		-->
+		<profile>
+			<id>prod</id>
+			<properties>
+				<spring.profiles.active>prod</spring.profiles.active>
+			</properties>
+		</profile>
+		
+	</profiles>
+	
+	<!-- Dependencies ... -->
+	<dependencies>
+		
+		<!-- ===================================================================0= -->
+		<!-- ====================== spring module(s) start =====================0= -->
+		<!-- ===================================================================0= -->
+		
+		<!-- ===================================================================0= -->
+		<!-- ======================= spring module(s) end ======================0= -->
+		<!-- ===================================================================0= -->
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<!-- ===================================================================1= -->
+		<!-- ===================== 3rt party library(s) start ==================1= -->
+		<!-- ===================================================================1= -->
+		
+		<!-- application project relative -->
+		<dependency>
+			<groupId>com.safecnc</groupId>
+			<artifactId>online-app</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+				
+	   	<!-- Need this to compile JSP -->
+	    <dependency>
+	        <groupId>org.apache.tomcat.embed</groupId>
+	        <artifactId>tomcat-embed-jasper</artifactId>
+	        <scope>provided</scope>
+	    </dependency>
+	    
+		<!-- ===================================================================1= -->
+		<!-- ====================== 3rt party library(s) end ===================1= -->
+		<!-- ===================================================================1= -->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		      <artifactId>spring-boot-starter-tomcat</artifactId>
+		      <scope>provided</scope> <!-- 안되어 있는 경우 변경! -->
+		</dependency>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<!-- ===================================================================2= -->
+		<!-- ====================== user library(s) start ======================2= -->
+		<!-- ===================================================================2= -->
+		
+		<!-- ===================================================================2= -->
+		<!-- ======================= user library(s) end =======================2= -->
+		<!-- ===================================================================2= -->
+
+	</dependencies>
+	
+	<!-- Maven Build Scripting and Default Phase on setting -->
+	
+	<build>
+		<defaultGoal>package</defaultGoal>
+		<finalName>${application.war.filename}</finalName>		<!-- SFD2022	 -->
+		<directory>${basedir}/target</directory>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.tomcat.maven</groupId>
+					<artifactId>tomcat7-maven-plugin</artifactId>
+					<version>2.2</version>
+					<configuration>
+						<port>80</port>
+						<path>/</path>
+						<systemProperties>
+							<JAVA_OPTS>-Dspring.profies.active=local -Xms256m -Xmx768m -XX:MaxPermSize=256m</JAVA_OPTS>
+						</systemProperties>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.8.1</version>
+					<configuration>
+						<source>1.8</source>
+						<target>1.8</target>
+						<encoding>UTF-8</encoding>
+						<maxmem>1024m</maxmem>
+					</configuration>
+				</plugin>
+				
+				<!-- LOMBOK -->
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+					<configuration>
+						<excludes>
+							<exclude>
+								<groupId>org.projectlombok</groupId>
+								<artifactId>lombok</artifactId>
+							</exclude>
+						</excludes>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+</project>

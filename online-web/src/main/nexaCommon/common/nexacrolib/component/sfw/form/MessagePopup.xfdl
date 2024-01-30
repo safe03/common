@@ -1,0 +1,309 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="alert" left="0" top="0" width="400" height="150" titletext="alert" onload="alert_onload">
+    <Layouts>
+      <Layout/>
+    </Layouts>
+    <Objects/>
+    <Script type="xscript5.1"><![CDATA[this.alert_image_url   = 'theme::../../nexacrolib/component/sfw/lib/images/img_alert.png';
+this.confirm_image_url = 'theme::../../nexacrolib/component/sfw/lib/images/img_confirm.png';
+this.prompt_image_url  = 'theme::../../nexacrolib/component/sfw/lib/images/img_question.png';
+
+this.alert_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	
+	//- setting declare variable
+	var sType    = this.parent.type;
+	var sMessage = this.parent.message;
+	var fFactory = this.parent.factory;
+	
+	this.parent.set_borderRadius('2px');
+	
+	//- setting basic popup
+	if(!this.sfw_isEmpty(sType)) {
+		
+		var componentList = [];
+		
+		//- setting modules
+		if(sType == 'alert') {
+			
+			componentList = this.mfn_alert();
+		} else if(sType == 'confirm') {
+			
+			componentList = this.mfn_confirm();
+		} else if(sType == 'prompt') {
+			
+			componentList = this.mfn_prompt();
+		}
+		
+		
+		//- create components
+		for(var comp in componentList) {
+			
+			var compObject = componentList[comp];
+			
+			this.addChild(compObject.id, compObject);
+			
+			compObject.show();
+		}
+	}
+	
+	//- factory setting
+	if(!this.sfw_isEmpty(fFactory)) {
+		
+		fFactory.call(this);
+	}
+	
+};
+
+
+
+/**
+ * Create Dynamic Message Component
+ * Conform [ Question Response ]
+ */
+this.mfn_prompt = function() {
+
+	// export module list
+	var componentList = [];
+	var fTransText = this.fn_translateLanguage;
+
+	//- basic size
+	var nLeft;
+	var nWidth = 60;
+	var nMargin = 5;
+	var nHeight = 25;
+	var nBottom = nMargin;
+	
+	var nImageWidth = 60;
+	
+	//- ok button
+	var buttonYes       = new Button('btnYes');
+	var buttonNo        = new Button('btnNo');
+	var imageTitle      = new ImageViewer('imgTitle');
+	var textareaMessage = new TextArea('txtMessage');
+	var editResponse    = new Edit('edtResponse');
+	
+	
+	//- Yes Button init
+	var nLeft  = this.width / 2 - nWidth - nMargin;
+	
+	buttonYes.set_left(nLeft);
+	buttonYes.set_width(nWidth);
+	buttonYes.set_bottom(nBottom);
+	buttonYes.set_height(nHeight);
+	buttonYes.set_text(fTransText('확인'));
+	buttonYes.set_cssclass('btn_pop_ok');
+	
+	
+	//- No Button init
+	var nLeft  = this.width / 2 + nMargin;
+	
+	buttonNo.set_left(nLeft);
+	buttonNo.set_width(nWidth);
+	buttonNo.set_bottom(nBottom);
+	buttonNo.set_height(nHeight);
+	buttonNo.set_text(fTransText('취소'));
+	buttonNo.set_cssclass('btn_pop_ok');
+	
+	
+	//- image init
+	imageTitle.set_left(nMargin);
+	imageTitle.set_top(nMargin);
+	imageTitle.set_bottom(nBottom * 2 + nHeight);
+	imageTitle.set_width(nImageWidth);
+	imageTitle.set_image(this.prompt_image_url);
+	imageTitle.set_border('0px none');
+	imageTitle.set_background('transparent');
+	
+	
+	//- message text area init
+	textareaMessage.set_left(nMargin * 2 + nImageWidth);
+	textareaMessage.set_right(nMargin * 2);
+	textareaMessage.set_top(nMargin * 2);
+	textareaMessage.set_bottom(nMargin * 2 + nHeight + 30);
+	
+	textareaMessage.set_value(this.parent.message);
+	textareaMessage.set_padding('10px 0px 0px 10px');
+	textareaMessage.set_border('0px none');
+	textareaMessage.set_background('transparent');
+	textareaMessage.set_scrollbartype('none indicator');
+	textareaMessage.set_readonly(true);
+	textareaMessage.set_borderRadius('2px');
+	
+	
+	//- response edit init
+	editResponse.set_left(nMargin * 2 + nImageWidth);
+	editResponse.set_right(nMargin * 3);
+	editResponse.set_height(20);
+	editResponse.set_bottom(nBottom * 2 + nHeight + nMargin);
+	
+	//- attach onclick event [buttonYes]
+	buttonYes.addEventHandler('onclick', function(obj, e){ this.close(editResponse.value||''); }, this);
+	
+	//- attach onclick event [buttonNo]
+	buttonNo.addEventHandler('onclick', function(obj, e){ this.close(null); }, this);
+	
+	//- create components
+	componentList.push(buttonYes, buttonNo, imageTitle, textareaMessage, editResponse);
+	
+	return componentList;
+}
+
+/**
+ * Create Dynamic Message Component
+ * Conform [ Yes or No ]
+ */
+this.mfn_confirm = function() {
+	
+	// export module list
+	var componentList = [];
+	var fTransText = this.fn_translateLanguage;
+
+	//- basic size
+	var nLeft;
+	var nWidth = 60;
+	var nMargin = 5;
+	var nHeight = 25;
+	var nBottom = nMargin;
+	
+	var nImageWidth = 60;
+	
+	//- ok button
+	var buttonYes       = new Button('btnYes');
+	var buttonNo        = new Button('btnNo');
+	var imageTitle      = new ImageViewer('imgTitle');
+	var textareaMessage = new TextArea('txtMessage');
+	
+	//- Yes Button init
+	var nLeft  = this.width / 2 - nWidth - nMargin;
+	
+	buttonYes.set_left(nLeft);
+	buttonYes.set_width(nWidth);
+	buttonYes.set_bottom(nBottom);
+	buttonYes.set_height(nHeight);
+	buttonYes.set_text(fTransText('확인'));
+	buttonYes.set_cssclass('btn_pop_ok');
+	
+	//- No Button init
+	var nLeft  = this.width / 2 + nMargin;
+	
+	buttonNo.set_left(nLeft);
+	buttonNo.set_width(nWidth);
+	buttonNo.set_bottom(nBottom);
+	buttonNo.set_height(nHeight);
+	buttonNo.set_text(fTransText('취소'));
+	buttonNo.set_cssclass('btn_pop_ok');
+	
+	//- image init
+	imageTitle.set_left(nMargin);
+	imageTitle.set_top(nMargin);
+	imageTitle.set_bottom(nBottom * 2 + nHeight);
+	imageTitle.set_width(nImageWidth);
+	imageTitle.set_image(this.confirm_image_url);
+	imageTitle.set_border('0px none');
+	imageTitle.set_background('transparent');
+	
+	
+	//- message text area init
+	textareaMessage.set_left(nMargin * 2 + nImageWidth);
+	textareaMessage.set_right(nMargin * 2);
+	textareaMessage.set_top(nMargin * 2);
+	textareaMessage.set_bottom(nMargin * 2 + nHeight);
+	textareaMessage.set_value(this.parent.message);
+	textareaMessage.set_padding('10px 0px 0px 10px');
+	textareaMessage.set_background('transparent');
+	textareaMessage.set_scrollbartype('none none');
+	textareaMessage.set_readonly(true);
+	textareaMessage.set_borderRadius('2px');
+	
+	textareaMessage.set_font('normal normal 12px/normal "굴림체"');
+	
+	//- attach onclick event [buttonYes]
+	buttonYes.addEventHandler('onclick', function(obj, e){ this.close(true); }, this);
+	
+	//- attach onclick event [buttonNo]
+	buttonNo.addEventHandler('onclick', function(obj, e){ this.close(false); }, this);
+	
+	//- create components
+	componentList.push(buttonYes, buttonNo, imageTitle, textareaMessage);
+	
+	return componentList;
+}
+
+
+/**
+ * Create Dynamic Message Component
+ * Alert [ Only Yes ]
+ */
+this.mfn_alert = function() {
+
+	// export module list
+	var componentList = [];
+	var fTransText = this.fn_translateLanguage;
+		
+	//- create components
+	var buttonYes       = new Button('btnYes');
+	var imageTitle      = new ImageViewer('imgTitle');
+	var textareaMessage = new TextArea('txtMessage');
+
+	//- basic size
+	var nLeft;
+	var nWidth = 60;
+	var nMargin = 5;
+	var nHeight = 25;
+	var nBottom = nMargin;
+	
+	var nImageWidth = 60;
+	var nLeft  = this.width / 2 - 25;
+	
+	//- yes button init
+	buttonYes.set_left(nLeft);
+	buttonYes.set_width(nWidth);
+	buttonYes.set_bottom(nBottom);
+	buttonYes.set_height(nHeight);
+	buttonYes.set_text(fTransText('확인'));
+	buttonYes.set_cssclass('btn_pop_ok');
+	
+	//- image init
+	imageTitle.set_left(nMargin);
+	imageTitle.set_top(nMargin);
+	imageTitle.set_bottom(nBottom * 2 + nHeight);
+	imageTitle.set_width(nImageWidth);
+	imageTitle.set_image(this.alert_image_url);
+	imageTitle.set_border('0px none');
+	imageTitle.set_background('transparent');
+	
+	//- message text area init
+	textareaMessage.set_left(nMargin * 2 + nImageWidth);
+	textareaMessage.set_right(nMargin * 2);
+	textareaMessage.set_top(nMargin * 2);
+	textareaMessage.set_bottom(nMargin * 2 + nHeight);
+	textareaMessage.set_value(this.parent.message);
+	textareaMessage.set_padding('10px 0px 0px 10px');
+	textareaMessage.set_background('transparent');
+	textareaMessage.set_scrollbartype('none none');
+	textareaMessage.set_readonly(true);
+	textareaMessage.set_borderRadius('2px');
+	
+	//- attach onclick event
+	buttonYes.addEventHandler('onclick', function(obj, e){
+		
+		this.close(true);
+		
+	}, this);
+	
+	componentList.push(buttonYes);
+	componentList.push(imageTitle);
+	componentList.push(textareaMessage);
+	
+	return componentList;
+}
+
+
+this.fn_translateLanguage = function(text) {
+	
+	return text;
+}]]></Script>
+  </Form>
+</FDL>

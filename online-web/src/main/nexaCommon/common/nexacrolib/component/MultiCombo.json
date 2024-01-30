@@ -1,0 +1,28 @@
+﻿{
+	"name": "MultiCombo",
+	"moduletype": "component",
+	"version": "1.0.2",
+	"minnexacroversion": "",
+	"description": "MultiCombo 를 위한 컴포넌트",
+	"license": "",
+	"objInfo": [	
+    "MultiCombo/_metainfo_/MultiCombo.info"
+	],
+	"scripts": [
+    "MultiCombo/MultiCombo.xcdl.js"
+	],
+	"designscripts": [
+    "MultiCombo/DesignMultiCombo.js"
+	],
+	"help": "",	
+	"xcss": "MultiCombo/_xcss_/MultiCombo.xcss",
+	"images": "MultiCombo/_images_/",	
+	"licensefiles": "",
+	"icons": "",
+	"userfolder": [
+
+	],
+	"contentseditor": [
+
+	]
+}

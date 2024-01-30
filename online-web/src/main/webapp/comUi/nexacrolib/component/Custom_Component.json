@@ -1,0 +1,36 @@
+﻿{
+	"name": "Custom_Component",
+	"moduletype": "component",
+	"version": "0",
+	"minnexacroversion": "",
+	"description": "",
+	"license": "",
+	"objInfo": [	
+    "Custom_Component/_metainfo_/CommonInfo.info",
+    "Custom_Component/_metainfo_/Code.info",
+    "Custom_Component/_metainfo_/Popup_DaumAddress.info"
+	],
+	"scripts": [
+    "Custom_Component/Custom_Component.js"
+	],
+	"scriptsfilter": [
+
+	],
+	"designscripts": [
+    ""
+	],
+	"help": "",	
+	"xcss": "",
+	"images": "",	
+	"licensefiles": "",
+	"icons": "Custom_Component/_icons_/",
+	"userfolder": [
+
+	],
+	"installinfo": {
+
+	},
+	"contentseditor": [
+
+	]
+}

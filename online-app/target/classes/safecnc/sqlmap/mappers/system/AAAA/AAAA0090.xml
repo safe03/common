@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AAAA0090">
+
+    <!-- **************************************
+    NAME  : 다국어Word 조회 테이블 조회
+    PARAM : 
+    MEMO  : 
+    *************************************** -->
+    <select id="SEL00" parameterType="map" resultType="map">
+        select
+			A.WORD_CODE ,
+			${langCodeOuter}
+			${descriptionOuter}
+			A.USEX_YSNO ,
+			A.AUTO_YSNO
+		from (
+			select
+				A.WORD_CODE ,
+				A.USEX_YSNO ,
+				${langCodeInner}
+				${descriptionInner}
+				A.AUTO_YSNO ,
+				A.LANG_CODE
+			from
+				TM_LANG_WORD A
+			where A.USEX_YSNO = '1'
+			<if test="!WORD_CDNM.equals('') and WORD_CDNM!=null">
+          		/* and A.WORD_VALU LIKE '%' <!-- #{WORD_CDNM} --> '%' */
+          		and A.WORD_CODE in ( select WORD_CODE 
+        								from TM_LANG_WORD A 
+          								where A.USEX_YSNO = '1' 
+          								and upper(A.WORD_VALU) like concat('%' , upper(#{WORD_CDNM}) , '%')
+       								)
+          	</if>				
+		) A
+		group by A.WORD_CODE ,
+				 A.USEX_YSNO ,
+				 A.AUTO_YSNO 
+	 	order by A.WORD_CODE
+    </select>
+    
+    <!-- **************************************
+    NAME  : 다국어 Word 코드 조회
+    PARAM : 
+    MEMO  : 
+    *************************************** -->
+    <select id="SEARCH10" parameterType="map" resultType="map">
+        SELECT A.LANG_CODE AS COMD_CODE
+             , A.LANG_NAME AS COMD_CDNM
+             , A.MAIN_YSNO
+             , A.REPL_LANG
+             , A.SORT_ORDR
+          FROM TM_LANGXM A
+         WHERE A.USEX_YSNO = '1'
+         <if test="MAIN_YSNO!=null and !MAIN_YSNO.equals('')">
+       		and A.MAIN_YSNO = #{MAIN_YSNO}  
+       	</if>
+      ORDER BY A.SORT_ORDR, A.LANG_CODE
+    </select>
+    
+    
+     <!-- **************************************
+    NAME  : 다국어 Word 동적 쿼리 조회
+    PARAM : 
+    MEMO  : 
+    *************************************** -->
+    <select id="SEARCH20" parameterType="map" resultType="map">
+        select LANG_CODE from tm_langxm where USEX_YSNO = '1'
+    </select>
+    
+    <!-- **************************************
+    NAME  : 다국어워드사전 저장
+    PARAM :
+    MEMO  :
+    *************************************** -->
+    <insert id="INS00" parameterType="map">
+		
+ 		INSERT INTO TM_LANG_WORD (
+               LANG_CODE   
+             , WORD_CODE   
+             , WORD_VALU   
+             , DESCRIPTION
+             , USEX_YSNO   
+             , AUTO_YSNO
+             , INST_USID   
+             , INST_DATE   
+             , UPDT_USID   
+             , UPDT_DATE   
+        ) VALUES (
+               #{LANG_CODE}   
+             , #{WORD_CODE}   
+             , #{WORD_VALU}   
+             , #{DESCRIPTION}   
+             , #{USEX_YSNO}   
+             , '1'
+             , #{USER_ID}   
+             , now()   		
+             , #{USER_ID}   
+             , now()   		
+        )
+	   	
+    </insert>
+    
+    <!-- **************************************
+    NAME  : 다국어워드사전 신규,수정 전 데이터를 삭제한다.
+    PARAM :
+    MEMO  :
+    *************************************** -->
+    <delete id="DEL10" parameterType="map">
+
+        DELETE FROM TM_LANG_WORD
+	         WHERE LANG_CODE = #{LANG_CODE} 
+	           AND WORD_CODE = #{WORD_CODE}
+    </delete>
+    
+    
+    <!-- **************************************
+    NAME  : 다국어워드사전 삭제
+    PARAM :
+    MEMO  :
+    *************************************** -->
+    <delete id="DEL00" parameterType="map">
+
+        DELETE FROM TM_LANG_WORD
+         WHERE WORD_CODE = #{WORD_CODE}   /*워드코드*/
+    </delete>
+    
+    
+    
+    
+    
+    
+	
+</mapper>

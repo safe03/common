@@ -1,0 +1,12 @@
+﻿{
+	"name": "D3Library",
+	"version": "1.0.0.0",
+	"description": "D3 Library for nexacro platform",
+	"license": "",
+	"scripts": [
+		"D3/Sizzle/sizzle.js",
+		"D3/d3.js",
+		"D3/Topojson/topojson.js"
+	]
+}
+//@ sourceURL=D3.json

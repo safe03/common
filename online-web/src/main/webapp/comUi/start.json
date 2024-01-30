@@ -1,0 +1,135 @@
+﻿{
+    "version" : "21.0.0.1",
+    "runtime" :
+    {
+        "target" :
+        {
+            "os" : "windows"
+        },
+        "framework" :
+        [    
+        "./nexacrolib/framework/SystemBase.js",
+        "./nexacrolib/framework/SystemBase_HTML5.js",
+        "./nexacrolib/framework/SystemBase_Runtime.js",
+        "./nexacrolib/framework/BasicObjs.js",
+        "./nexacrolib/framework/ErrorDefine.js",
+        "./nexacrolib/framework/Platform_HTML5.js",
+        "./nexacrolib/framework/Platform_Runtime.js",
+        "./nexacrolib/framework/Platform.js",
+        "./nexacrolib/framework/CssObjs.js",
+        "./nexacrolib/framework/Device.js",
+        "./nexacrolib/framework/Device_Android.js",
+        "./nexacrolib/framework/Device_Windows.js",
+        "./nexacrolib/framework/Device_iOS.js"
+        ],
+        "component" :
+        [    
+        "./nexacrolib/component/CompBase/Element_HTML5.js",
+        "./nexacrolib/component/CompBase/Element_Runtime.js",
+        "./nexacrolib/component/CompBase/CompBase.js",
+        "./nexacrolib/component/CompBase/CompEventBase.js",
+        "./nexacrolib/component/CompBase/Data.js",
+        "./nexacrolib/component/CompBase/EditBase.js",
+        "./nexacrolib/component/CompBase/FormBase.js",
+        "./nexacrolib/component/CompBase/TitleBar.js",
+        "./nexacrolib/component/CompBase/StatusBar.js",
+        "./nexacrolib/component/CompBase/FrameBase.js",
+        "./nexacrolib/component/CompBase/ScrollBar.js",
+        "./nexacrolib/component/CompBase/Step.js",
+        "./nexacrolib/component/CompBase/Animation.js",
+        "./nexacrolib/component/ComComp/Dataset.js",
+        "./nexacrolib/component/ComComp/DataObject.js",
+        "./nexacrolib/component/ComComp/DomObject.js",
+        "./nexacrolib/component/ComComp/Static.js",
+        "./nexacrolib/component/ComComp/Button.js",
+        "./nexacrolib/component/ComComp/Edit.js",
+        "./nexacrolib/component/ComComp/MaskEdit.js",
+        "./nexacrolib/component/ComComp/TextArea.js",
+        "./nexacrolib/component/ComComp/lang/ko/ime.js",
+        "./nexacrolib/component/ComComp/lang/ja/ime.js",
+        "./nexacrolib/component/ComComp/ImageViewer.js",
+        "./nexacrolib/component/ComComp/CheckBox.js",
+        "./nexacrolib/component/ComComp/Radio.js",
+        "./nexacrolib/component/ComComp/ListBox.js",
+        "./nexacrolib/component/ComComp/Combo.js",
+        "./nexacrolib/component/ComComp/Div.js",
+        "./nexacrolib/component/ComComp/ProgressBar.js",
+        "./nexacrolib/component/ComComp/PopupDiv.js",
+        "./nexacrolib/component/ComComp/Menu.js",
+        "./nexacrolib/component/ComComp/PopupMenu.js",
+        "./nexacrolib/component/ComComp/Spin.js",
+        "./nexacrolib/component/ComComp/DatePicker.js",
+        "./nexacrolib/component/ComComp/Calendar.js",
+        "./nexacrolib/component/ComComp/GroupBox.js",
+        "./nexacrolib/component/ComComp/Tab.js",
+        "./nexacrolib/component/ComComp/FileDialog.js",
+        "./nexacrolib/component/ComComp/FileDownload.js",
+        "./nexacrolib/component/ComComp/FileDownTransfer.js",
+        "./nexacrolib/component/ComComp/FileUpload.js",
+        "./nexacrolib/component/ComComp/FileUpTransfer.js",
+        "./nexacrolib/component/ComComp/VideoPlayer.js",
+        "./nexacrolib/component/ComComp/WebBrowser.js",
+        "./nexacrolib/component/ComComp/GoogleMap.js",
+        "./nexacrolib/component/ComComp/Sketch.js",
+        "./nexacrolib/component/ComComp/ExportObject.js",
+        "./nexacrolib/component/ComComp/ImportObject.js",
+        "./nexacrolib/component/ComComp/Tray.js",
+        "./nexacrolib/component/ComComp/Plugin.js",
+        "./nexacrolib/component/ComComp/VirtualFile.js",
+        "./nexacrolib/component/ComComp/Cell.js",
+        "./nexacrolib/component/ComComp/View.js",
+        "./nexacrolib/component/ComComp/Action.js",
+        "./nexacrolib/component/ComComp/WebView.js",
+        "./nexacrolib/component/Grid/GridInfo.js",
+        "./nexacrolib/component/Grid/Grid.js",
+        "./nexacrolib/component/CompBaseEx/SimpleComp.js",
+        "./nexacrolib/component/CompBaseEx/ComplexComp.js",
+        "./nexacrolib/component/ListView/ListView.js",
+        "./nexacrolib/component/DeviceAPI/SQLite.js",
+        "./nexacrolib/component/DeviceAPI/SQLite_Runtime.js",
+        "./nexacrolib/component/DeviceAPI/DeviceObjs.js",
+        "./nexacrolib/component/DeviceAPI/DeviceObjs_Runtime.js",
+        "./nexacrolib/component/DeviceAPI/Mobile.js",
+        "./nexacrolib/component/DeviceAPI/BluetoothLE.js",
+        "./nexacrolib/component/DeviceAPI/TCPClientSocket.js"
+        ],
+        "environment" :
+        [    
+        {
+        "file":"./environment.xml.js"
+        }
+        ],
+        "screen" :
+        [    
+        {"id":"Desktop_screen","type":"desktop","themeid":"theme::common"}
+        ],
+        "xadl" :
+        [
+        {
+        	"screenid":"Desktop_screen",
+        	"launch":"./Application_Desktop.xadl.js",
+        	"quickview":"./Application_Desktop.xadl.quickview.js",
+        	"form":[
+        				"./FrameBase/workFrame.xfdl.js"
+        	]
+        }
+        ],  
+        "protocol" :
+        {
+            "adaptors" :
+            []
+        },
+        "resource" :
+        {
+
+        },
+		"deploy" :
+        {
+
+        },
+        "userfont" :
+        [
+
+        ]
+    }
+}

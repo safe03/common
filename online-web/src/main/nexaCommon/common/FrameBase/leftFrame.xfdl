@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="leftFrame" width="250" height="720" titletext="left 프레임">
+    <Layouts>
+      <Layout height="720" mobileorientation="landscape" width="250">
+        <Button id="left" taborder="0" text="left Frame" left="35" top="122" width="169" height="172"/>
+      </Layout>
+    </Layouts>
+  </Form>
+</FDL>

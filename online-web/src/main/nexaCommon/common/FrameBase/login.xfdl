@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="login" width="550" height="290" titletext="로그인">
+    <Layouts>
+      <Layout width="550" height="290" screenid="Desktop_screen">
+        <Button id="login" taborder="0" text="로그인" left="70" top="60" width="360" height="120"/>
+      </Layout>
+    </Layouts>
+  </Form>
+</FDL>

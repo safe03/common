@@ -1,0 +1,10 @@
+﻿{
+	"name": "gridRowGrouping",
+	"version": "1.0.0.0",
+	"description": "extend nexacro component",
+	"license": "",
+	"scripts": [
+        "gridRowGrouping/gridRowGrouping.js"
+	]
+}
+//@ sourceURL=gridRowGrouping.json

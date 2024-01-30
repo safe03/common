@@ -1,0 +1,34 @@
+﻿{
+	"name": "datasetUtility",
+	"moduletype": "component",
+	"version": "0",
+	"minnexacroversion": "",
+	"description": "",
+	"license": "",
+	"objInfo": [	
+    "datasetUtility/_metainfo_/datasetUtility.info"
+	],
+	"scripts": [
+    "datasetUtility/datasetUtility.js"
+	],
+	"scriptsfilter": [
+
+	],
+	"designscripts": [
+    ""
+	],
+	"help": "",	
+	"xcss": "",
+	"images": "",	
+	"licensefiles": "",
+	"icons": "",
+	"userfolder": [
+
+	],
+	"installinfo": {
+
+	},
+	"contentseditor": [
+
+	]
+}

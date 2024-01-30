@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AAAA0100">
+
+    <!-- **************************************
+    NAME  : 다국어메시지관리 조회
+    PARAM : 
+    MEMO  : 
+    *************************************** -->
+    <select id="SEL00" parameterType="map" resultType="map">
+		 SELECT  
+			 'KR' AS MAIN_LANG
+		    ,IFNULL(D.LANG_CODE,#{LANG_CODE}) AS LANG_CODE                      
+		    ,C.MSG_CD 
+		    ,C.MSG_TEXT 
+		    ,D.MESG_TEXT 
+		FROM  ta_message C	
+		LEFT OUTER JOIN TM_LANG_MESG D  ON  C.MSG_CD = D.MESG_CODE AND  D.LANG_CODE = #{LANG_CODE}
+		<if test="!MESG_TEXT.equals('') and MESG_TEXT!=null">
+       		WHERE C.MSG_CD like '%' #{MESG_TEXT} '%' or C.MSG_TEXT like '%' #{MESG_TEXT} '%'
+        </if>
+		ORDER BY C.MSG_CD
+    </select>
+    
+	<!-- **************************************
+    NAME  : 다국어메시지관리 저장
+    PARAM :
+    MEMO  :
+    *************************************** -->
+    <insert id="INS00" parameterType="map">
+		 
+      	DELETE FROM TM_LANG_MESG
+		 WHERE LANG_CODE = #{LANG_CODE} 
+		   AND MESG_CODE = #{MSG_CD}; 
+		      
+		  
+		INSERT INTO TM_LANG_MESG (
+		       LANG_CODE   
+		     , MESG_CODE   
+		     , MESG_TEXT   
+		     , INST_USID
+		     , INST_DATE
+		     , UPDT_USID
+		     , UPDT_DATE
+		) VALUES (
+		       #{LANG_CODE}   
+		     , #{MSG_CD}   
+		     , #{MESG_TEXT}   
+		     , #{USERID}
+		     , now()
+		     , #{USERID}
+		     , now()
+		);
+		
+		IF EXISTS (SELECT 1 FROM ta_message WHERE MSG_CD = #{MSG_CD} ) THEN
+			BEGIN
+				
+				UPDATE ta_message 
+				  SET MSG_TEXT = #{MSG_TEXT} 
+				WHERE MSG_CD = #{MSG_CD};
+				
+			END;
+		ELSE
+			BEGIN
+			
+				INSERT INTO ta_message (
+				       MSG_CD   
+				     , MSG_TEXT   
+				     , INS_DATE   
+				     , INS_USID   
+				) VALUES (
+				       #{MSG_CD} 
+				     , #{MSG_TEXT} 
+				     , now()
+				     , #{USERID}	
+				);
+			
+			END;
+		END IF;
+		 
+
+         
+    </insert>
+    
+    <!-- **************************************
+    NAME  : 다국어메시지관리 삭제
+    PARAM : 
+    MEMO  : 
+    *************************************** -->
+    <delete id="DEL00" parameterType="map">
+		DELETE FROM TM_LANG_MESG
+         WHERE LANG_CODE = #{LANG_CODE} 
+           AND MESG_CODE = #{MSG_CD}; 
+           
+		DELETE FROM ta_message
+         WHERE MSG_CD = #{MSG_CD};
+
+    </delete>
+    
+    
+    
+    
+	
+</mapper>

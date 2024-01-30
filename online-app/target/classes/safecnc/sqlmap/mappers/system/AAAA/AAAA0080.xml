@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AAAA0080">
+
+    <!-- **************************************
+    NAME  : 다국어관리 테이블 조회
+    PARAM : 
+    MEMO  : 
+    *************************************** -->
+    <select id="SEL00" parameterType="map" resultType="map">
+        SELECT A.LANG_CODE
+             , A.LANG_NAME
+             , A.USEX_YSNO
+             , A.REMK_DESC
+             , A.MAIN_YSNO
+             , A.REPL_LANG
+             , A.SORT_ORDR
+          FROM TM_LANGXM A 
+          <if test="!MSGE_CNTT.equals('') and MSGE_CNTT!=null">
+          		WHERE LANG_CODE LIKE '%' #{MSGE_CNTT} '%' OR LANG_NAME LIKE '%' #{MSGE_CNTT} '%'
+          </if>
+         ORDER BY A.SORT_ORDR, A.LANG_CODE
+    </select>
+    
+    <!-- **************************************
+    NAME  : 다국어관리 테이블 저장
+    PARAM : 
+    MEMO  : 
+    *************************************** -->
+    <insert id="INS00" parameterType="map">   
+        INSERT INTO TM_LANGXM (
+               LANG_CODE
+             , LANG_NAME
+             , USEX_YSNO
+             , REMK_DESC
+             , MAIN_YSNO
+             , REPL_LANG
+             , SORT_ORDR
+             , INST_USID
+             , INST_DATE
+             , UPDT_USID
+             , UPDT_DATE
+        ) VALUES (
+               #{LANG_CODE}
+             , #{LANG_NAME}
+             , #{USEX_YSNO}
+             , #{REMK_DESC}
+             , #{MAIN_YSNO}
+             , #{REPL_LANG}
+             , #{SORT_ORDR}
+             , #{UPDT_USID}
+             , NOW()
+             , #{UPDT_USID}
+             , NOW()
+        )
+    </insert>
+    
+    <!-- **************************************
+    NAME  : 다국어관리 테이블 수정
+    PARAM : 
+    MEMO  : 
+    *************************************** -->
+    <update id="UPD00" parameterType="map">
+    <![CDATA[
+        UPDATE TM_LANGXM
+           SET LANG_NAME = #{LANG_NAME}
+             , USEX_YSNO = #{USEX_YSNO}
+             , REMK_DESC = #{REMK_DESC}
+             , MAIN_YSNO = #{MAIN_YSNO}
+             , REPL_LANG = #{REPL_LANG}
+             , SORT_ORDR = #{SORT_ORDR}
+             , UPDT_USID = #{UPDT_USID}
+             , UPDT_DATE = NOW()
+         WHERE LANG_CODE = #{LANG_CODE}
+    ]]>
+    </update>
+    
+     <!-- **************************************
+    NAME  : 다국어관리 테이블 삭제
+    PARAM : 
+    MEMO  : 
+    *************************************** -->
+    <delete id="DEL00" parameterType="map">
+    <![CDATA[
+        DELETE FROM TM_LANGXM
+         WHERE LANG_CODE = #{LANG_CODE} 
+    ]]>
+    </delete>
+    
+    <!-- **************************************
+    NAME  : 다국어
+    MEMO  : 
+    *************************************** -->
+    <select id="CM0003" parameterType="map" resultType="map">
+        SELECT A.LANG_CODE AS COMD_CODE
+             , A.LANG_NAME AS COMD_CDNM
+             , A.MAIN_YSNO
+             , A.REPL_LANG
+             , A.SORT_ORDR
+          FROM TM_LANGXM A
+         WHERE A.USEX_YSNO = '1'
+      ORDER BY A.SORT_ORDR, A.LANG_CODE
+    </select>
+    
+	
+</mapper>
